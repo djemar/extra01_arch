@@ -28,10 +28,9 @@ void elevator_up() {
     LED_Off(0);
     LED_Off(2);
 		joystick_move_enabled = FALSE;
-		joystick_select_enabled = TRUE;
+		//joystick_select_enabled = FALSE;
 		NVIC_EnableIRQ(EINT1_IRQn);
 		NVIC_EnableIRQ(EINT2_IRQn);
-    //TODO other?... 
   }
 }
 void elevator_down() {
@@ -40,9 +39,8 @@ void elevator_down() {
 		LED_Off(0);
     LED_Off(2);
 		joystick_move_enabled = FALSE;
-		joystick_select_enabled = TRUE;
+		//joystick_select_enabled = FALSE;
 		NVIC_EnableIRQ(EINT1_IRQn);
 		NVIC_EnableIRQ(EINT2_IRQn);
-    //TODO other?... 
   }
 }

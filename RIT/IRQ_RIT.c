@@ -50,7 +50,7 @@ void RIT_IRQHandler (void)
 		}
 	}
 
-	if(joystick_move_enabled) {
+	if(joystick_move_enabled == TRUE) {
 		if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){	
 			/* Joytick Up pressed */
 			elevator_up();
@@ -80,7 +80,7 @@ void RIT_IRQHandler (void)
 			}
 		} else {	/* button released */
 			state_key1 = 0;			
-			LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
+			//LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
 		}
 	
 		
@@ -98,7 +98,7 @@ void RIT_IRQHandler (void)
 			}
 		} else {	/* button released */
 			state_key2 = 0;			
-			LPC_PINCON->PINSEL4    |= (1 << 24);     /* External interrupt 0 pin selection */
+			//LPC_PINCON->PINSEL4    |= (1 << 24);     /* External interrupt 0 pin selection */
 		}
 
   LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
