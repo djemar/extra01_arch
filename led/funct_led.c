@@ -10,17 +10,21 @@
 
 #include "lpc17xx.h"
 #include "led.h"
+#include "../const.h"
 
 #define LED_NUM     8                   /* Number of user LEDs                */
 const unsigned long led_mask[] = { 1UL<<0, 1UL<<1, 1UL<<2, 1UL<< 3, 1UL<< 4, 1UL<< 5, 1UL<< 6, 1UL<< 7 };
 
 extern unsigned char led_value;
+unsigned int status_led_on = FALSE;
 
 /*----------------------------------------------------------------------------
   Function that turns on requested LED
  *----------------------------------------------------------------------------*/
 void LED_On(unsigned int num) {
- 
+  if(num == 7) {
+    status_led_on = TRUE;
+  }
   LPC_GPIO2->FIOPIN |= led_mask[num];
 	led_value = LPC_GPIO2->FIOPIN;
 }
@@ -29,7 +33,9 @@ void LED_On(unsigned int num) {
   Function that turns off requested LED
  *----------------------------------------------------------------------------*/
 void LED_Off(unsigned int num) {
-
+  if(num == 7) {
+    status_led_on = FALSE;
+  }
   LPC_GPIO2->FIOPIN &= ~led_mask[num];
 	led_value = LPC_GPIO2->FIOPIN;
 }
@@ -48,4 +54,18 @@ void LED_Out(unsigned int value) {
     }
   }
 	led_value = value;
+}
+
+void LED_blink(unsigned int target){
+  static unsigned int counter = 0;
+  counter++;
+  if(counter == target) {
+    counter = 0;
+    if(status_led_on == FALSE) 
+      LED_On(7);
+    else 
+      LED_Off(7);
+  }
+	if(target == -1) // elevator has arrived
+		counter = 0;
 }

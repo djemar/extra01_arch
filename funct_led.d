@@ -6,3 +6,4 @@
 .\funct_led.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\funct_led.o: C:\Keil_v5\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
 .\funct_led.o: led\led.h
+.\funct_led.o: led\../const.h

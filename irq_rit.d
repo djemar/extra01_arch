@@ -9,3 +9,4 @@
 .\irq_rit.o: RIT\../joystick/joystick.h
 .\irq_rit.o: RIT\../button_EXINT/button.h
 .\irq_rit.o: RIT\../const.h
+.\irq_rit.o: RIT\../led/led.h

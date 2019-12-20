@@ -27,10 +27,24 @@ Project File Date:  12/20/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling funct_led.c...
+led\funct_led.c(69): warning:  #68-D: integer conversion resulted in a change of sign
+  	if(target == -1) // elevator has arrived
+led\funct_led.c: 1 warning, 0 errors
+compiling funct_button.c...
+compiling funct_joystick.c...
+joystick\funct_joystick.c(35): warning:  #68-D: integer conversion resulted in a change of sign
+  			LED_blink(-1); // reset counter (static)
+joystick\funct_joystick.c(50): warning:  #68-D: integer conversion resulted in a change of sign
+  			LED_blink(-1); // reset counter (static)
+joystick\funct_joystick.c: 2 warnings, 0 errors
 compiling IRQ_RIT.c...
+RIT\IRQ_RIT.c(61): warning:  #68-D: integer conversion resulted in a change of sign
+  			LED_blink(-1); // reset counter (static)
+RIT\IRQ_RIT.c: 1 warning, 0 errors
 linking...
-Program Size: Code=2132 RO-data=268 RW-data=32 ZI-data=608  
-".\sample.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=2348 RO-data=268 RW-data=48 ZI-data=608  
+".\sample.axf" - 0 Error(s), 4 Warning(s).
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

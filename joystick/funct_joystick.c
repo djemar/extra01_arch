@@ -18,29 +18,39 @@ extern unsigned int elevator_position;
 extern unsigned int joystick_select_enabled;
 extern unsigned int joystick_move_enabled;
 
+extern unsigned int elevator_arrived;
+
 /*----------------------------------------------------------------------------
   Function that turns on requested led
  *----------------------------------------------------------------------------*/
 
 void elevator_up() {
-  elevator_position++;
-  if(elevator_position == UPSTAIRS) {
-    LED_Off(0);
-    LED_Off(2);
-		joystick_move_enabled = FALSE;
-		//joystick_select_enabled = FALSE;
-		NVIC_EnableIRQ(EINT1_IRQn);
-		NVIC_EnableIRQ(EINT2_IRQn);
-  }
+	if(elevator_position != UPSTAIRS) {
+		elevator_position++;
+		LED_blink(20);  // 2 Hz = 0.5s => 500ms; 25ms polling timer => 20
+		if(elevator_position == UPSTAIRS) {
+			LED_Off(0);
+			LED_Off(2);
+      elevator_arrived = TRUE;
+			LED_blink(-1); // reset counter (static)
+			joystick_move_enabled = FALSE;
+			NVIC_EnableIRQ(EINT1_IRQn);
+			NVIC_EnableIRQ(EINT2_IRQn);
+		}
+	}
 }
 void elevator_down() {
-  elevator_position--;
-	if(elevator_position == DOWNSTAIRS) {
-		LED_Off(0);
-    LED_Off(2);
-		joystick_move_enabled = FALSE;
-		//joystick_select_enabled = FALSE;
-		NVIC_EnableIRQ(EINT1_IRQn);
-		NVIC_EnableIRQ(EINT2_IRQn);
-  }
+	if(elevator_position != DOWNSTAIRS) {
+		elevator_position--;
+		LED_blink(20); // 2 Hz = 0.5s => 500ms; 25ms polling timer => 20
+		if(elevator_position == DOWNSTAIRS) {
+			LED_Off(0);
+			LED_Off(2);
+      elevator_arrived = TRUE;
+			LED_blink(-1); // reset counter (static)
+			joystick_move_enabled = FALSE;
+			NVIC_EnableIRQ(EINT1_IRQn);
+			NVIC_EnableIRQ(EINT2_IRQn);
+		}
+	}
 }
