@@ -63,6 +63,6 @@ funct_led.crf
 core_cm3.crf
 sample.lnp
 sample.uvopt
-sample.uvgui.die19
 startup_LPC17xx.lst
 system_lpc17xx.crf
+sample.uvgui.die19
