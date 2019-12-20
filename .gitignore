@@ -53,3 +53,16 @@ dkms.conf
 
 #Other
 .vscode
+sample.axf
+sample_Target 1.dep
+*.htm
+startup_LPC17xx.lst
+system_lpc17xx.crf
+irq_rit.crf
+funct_led.crf
+core_cm3.crf
+sample.lnp
+sample.uvopt
+sample.uvgui.die19
+startup_LPC17xx.lst
+system_lpc17xx.crf
