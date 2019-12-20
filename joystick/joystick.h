@@ -12,5 +12,4 @@
 void joystick_init(void);
 
 /* funct_joystick */
-void elevator_up (void);
-void elevator_down (void);
+

@@ -6,5 +6,3 @@
 .\funct_button.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\funct_button.o: C:\Keil_v5\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
 .\funct_button.o: button_EXINT\button.h
-.\funct_button.o: button_EXINT\../led/led.h
-.\funct_button.o: button_EXINT\../const.h

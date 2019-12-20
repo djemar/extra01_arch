@@ -16,4 +16,4 @@ void LED_deinit(void);
 void LED_On (unsigned int num);
 void LED_Off (unsigned int num);
 void LED_Out(unsigned int value);
-void LED_blink(unsigned int target);
+void LED_blink(unsigned int num, unsigned int freq);

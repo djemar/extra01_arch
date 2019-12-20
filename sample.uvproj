@@ -568,6 +568,21 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>elevator</GroupName>
+          <Files>
+            <File>
+              <FileName>elevator.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\elevator\elevator.h</FilePath>
+            </File>
+            <File>
+              <FileName>funct_elevator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\elevator\funct_elevator.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>

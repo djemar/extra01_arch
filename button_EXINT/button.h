@@ -5,7 +5,3 @@ void BUTTON_init(void);
 void EINT1_IRQHandler(void);
 void EINT2_IRQHandler(void);
 void EINT3_IRQHandler(void);
-
-/*funct_button*/
-void call_elevator(unsigned int floor);
-

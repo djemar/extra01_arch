@@ -6,7 +6,8 @@
 .\irq_rit.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\irq_rit.o: C:\Keil_v5\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
 .\irq_rit.o: RIT\RIT.h
-.\irq_rit.o: RIT\../joystick/joystick.h
+.\irq_rit.o: RIT\../elevator/elevator.h
+.\irq_rit.o: RIT\../elevator/../const.h
 .\irq_rit.o: RIT\../button_EXINT/button.h
 .\irq_rit.o: RIT\../const.h
 .\irq_rit.o: RIT\../led/led.h
