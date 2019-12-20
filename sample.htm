@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\sample.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\sample.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Dec 20 19:53:05 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Dec 20 22:09:41 2019
 <BR><P>
 <H3>Maximum Stack Usage =         24 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -409,7 +409,7 @@ Global Symbols
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_On
 </UL>
 
-<P><STRONG><a name="[4a]"></a>LED_blink</STRONG> (Thumb, 108 bytes, Stack size 8 bytes, funct_led.o(.text))
+<P><STRONG><a name="[4a]"></a>LED_blink</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, funct_led.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LED_blink
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Off
@@ -420,21 +420,19 @@ Global Symbols
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RIT_IRQHandler
 </UL>
 
-<P><STRONG><a name="[e]"></a>TIMER0_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, irq_timer.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
-</UL>
-<P><STRONG><a name="[f]"></a>TIMER1_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, irq_timer.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
-</UL>
 <P><STRONG><a name="[7b]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[7c]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[7d]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[7e]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[7e]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[7f]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[55]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[7f]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[41]"></a>SystemInit</STRONG> (Thumb, 526 bytes, Stack size 0 bytes, system_lpc17xx.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -476,6 +474,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<P><STRONG><a name="[e]"></a>TIMER0_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, irq_timer.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
+<P><STRONG><a name="[f]"></a>TIMER1_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, irq_timer.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
+</UL>
 <P><STRONG><a name="[2a]"></a>RIT_IRQHandler</STRONG> (Thumb, 264 bytes, Stack size 8 bytes, irq_rit.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = RIT_IRQHandler &rArr; elevator_up &rArr; elevator_arrived
 </UL>
@@ -567,17 +571,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[83]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
-
-<P><STRONG><a name="[55]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
-</UL>
-
-<P><STRONG><a name="[84]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
-
 <P><STRONG><a name="[40]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
+
+<P><STRONG><a name="[83]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[84]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[85]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 <P>

@@ -68,7 +68,7 @@ void RIT_IRQHandler (void)
 	}
 
 	if(elevator_status == ARRIVED) { // 3s = 3000ms; 25 ms polling timer => 120 
-		LED_blink(STATUS_LED, 8); 
+		LED_blink(STATUS_LED, HZ_5); 
 	} // TODO else if(elevator_status == REACHING_FLOOR?) { // controllare che tutte le funzioni siano bloccate }
 	
 	/******************* 

@@ -55,7 +55,7 @@ void LED_Out(unsigned int value) {
 	led_value = value;
 }
 
-void LED_blink(unsigned int num, unsigned int freq){
+void LED_blink(unsigned int n_LED, unsigned int freq){
   static unsigned int blink_counter;
   
   if(elevator_status == ARRIVED) {
@@ -66,6 +66,8 @@ void LED_blink(unsigned int num, unsigned int freq){
       elevator_status = FREE;
       time_counter = 0;
       blink_counter = 0;
+      if(leds_status[n_LED] == ON) // shut off the LED if it is still on
+        LED_Off(n_LED);
       return;
    }
   }
@@ -73,10 +75,10 @@ void LED_blink(unsigned int num, unsigned int freq){
   blink_counter++;
   if(blink_counter == freq) {
     blink_counter = 0;
-    if(leds_status[num] == OFF) 
-      LED_On(num);
+    if(leds_status[n_LED] == OFF) 
+      LED_On(n_LED);
     else 
-      LED_Off(num);
+      LED_Off(n_LED);
   }
 
 }
