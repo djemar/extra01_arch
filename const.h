@@ -28,9 +28,11 @@
 *   ELEVATOR STATUS
 */
 #define FREE 0
-#define BUSY 1
+#define RESERVED 1
 #define ARRIVED 2
 #define MOVING 3
+#define REACHING_UPSTAIRS 4
+#define REACHING_DOWNSTAIRS 5
 
 /*
 *   BLINK

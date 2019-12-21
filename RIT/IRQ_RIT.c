@@ -34,6 +34,26 @@ extern unsigned int elevator_status;
 
 void RIT_IRQHandler (void)
 {				
+	/*****************************************************
+	** actions to do with respect to the elevator status
+	*****************************************************/
+	switch(elevator_status) {
+		case ARRIVED:
+			LED_blink(STATUS_LED, HZ_5); 
+			break;
+		case REACHING_UPSTAIRS:
+			move_elevator(1);
+			break;
+		case REACHING_DOWNSTAIRS:
+			move_elevator(-1);
+		default:
+			break;
+	}
+	if(elevator_status == ARRIVED) { // 3s = 3000ms; 25 ms polling timer => 120 
+		
+	} // TODO else if(elevator_status == REACHING_FLOOR?) { // controllare che tutte le funzioni siano bloccate }
+	
+	
 	/********************* 
 	** joystick management
 	*********************/
@@ -66,10 +86,6 @@ void RIT_IRQHandler (void)
 			elevator_pause(); 
 		}
 	}
-
-	if(elevator_status == ARRIVED) { // 3s = 3000ms; 25 ms polling timer => 120 
-		LED_blink(STATUS_LED, HZ_5); 
-	} // TODO else if(elevator_status == REACHING_FLOOR?) { // controllare che tutte le funzioni siano bloccate }
 	
 	/******************* 
 	** button management

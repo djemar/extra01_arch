@@ -40,14 +40,25 @@ void call_elevator(unsigned int user_floor) {
 	NVIC_DisableIRQ(EINT1_IRQn);
   NVIC_DisableIRQ(EINT2_IRQn);
 
-  elevator_status = BUSY;
-
   LED_On(RESERVE_LED_0);
   LED_On(RESERVE_LED_1);
 
 	if(user_floor == elevator_position) {
 		joystick_select_enabled = TRUE;
+		elevator_status = RESERVED; // TODO unused ? 
 	} else {
-		//TODO goto_user();
+		if(user_floor > elevator_position) 
+			elevator_status = REACHING_UPSTAIRS;
+		else 
+			elevator_status = REACHING_DOWNSTAIRS;
+	}
+}
+
+// function used to reach the user that have called the lift from another floor (user_floor != elevator_floor)
+void move_elevator(int step) {
+	elevator_position += step;
+	if(elevator_position == UPSTAIRS || elevator_position == DOWNSTAIRS) {
+		joystick_select_enabled = TRUE;
+		elevator_status = RESERVED; // TODO unused ?
 	}
 }
