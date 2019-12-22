@@ -24,7 +24,7 @@ void elevator_up() {
 	LED_blink(STATUS_LED, HZ_2);
 		
 	if(elevator_position == UPSTAIRS) {
-		elevator_old_status = elevator_status; /* it can be REACHING_USER or BUSY */
+		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
 		elevator_status = ARRIVED;
 		joystick_status = DISABLED;
 		blink_counter = 0;
@@ -39,7 +39,7 @@ void elevator_down() {
 	LED_blink(STATUS_LED, HZ_2);
 	
 	if(elevator_position == DOWNSTAIRS) {
-		elevator_old_status = elevator_status; /* it can be REACHING_USER or BUSY */
+		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
 		elevator_status = ARRIVED;
 		joystick_status = DISABLED;
 		blink_counter = 0;
@@ -57,10 +57,10 @@ void elevator_arrived() {
 		blink_counter = 0;
 		switch(elevator_old_status) {
 			case REACHING_USER:
-				elevator_status = BUSY;
+				elevator_status = READY;
 				joystick_status = SELECT_ENABLED;
 				break;
-			case BUSY:
+			case MOVING:
 				free_elevator();
 				break;
 			default:
@@ -87,7 +87,7 @@ void call_elevator(unsigned int user_floor) {
 
 	if(user_floor == elevator_position) {
 		joystick_status = SELECT_ENABLED;
-		elevator_status = STOPPED;
+		elevator_status = READY;
 		LED_On(STATUS_LED);
 	} else {
 		request_floor = user_floor;

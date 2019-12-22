@@ -2,10 +2,11 @@
 *   ELEVATOR STATUS
 */
 #define FREE 0
-#define REACHING_USER 1
-#define BUSY 2 // user is moving
-#define STOPPED 3 // user is not moving --> alarm timer
-#define ARRIVED 4
+#define READY 1
+#define REACHING_USER 2
+#define MOVING 3
+#define STOPPED 4
+#define ARRIVED 5
 
 /*
 * 	JOYSTICK STATUS

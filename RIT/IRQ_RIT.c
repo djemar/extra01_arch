@@ -78,12 +78,14 @@ void RIT_IRQHandler (void)
 			}
 			break;
 		
+		case READY:
+			break;
+		
 		case REACHING_USER:
 			elevator_reach_user();
 			break;
 		
-		case BUSY: 
-			/* nothing to do, it is moving using the joystick */
+		case MOVING: 
 			break;
 			
 		case STOPPED: 
@@ -111,12 +113,12 @@ void RIT_IRQHandler (void)
 		case MOVE_ENABLED:
 			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
 				if(elevator_position != UPSTAIRS) {
-					elevator_status = BUSY;
+					elevator_status = MOVING;
 					elevator_up();
 				}
 			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
 				if(elevator_position != DOWNSTAIRS) {
-					elevator_status = BUSY;
+					elevator_status = MOVING;
 					elevator_down();
 				}
 			} else { /* Joytick Down & Up released */ 
