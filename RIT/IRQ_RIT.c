@@ -24,111 +24,115 @@
 **
 ******************************************************************************/
 
-volatile int state_key1=0;
-volatile int state_key2=0;
-volatile unsigned int joystick_select_enabled = FALSE;
-volatile unsigned int joystick_move_enabled = FALSE;
+int state_key1=0;
+int state_key2=0;
+unsigned int joystick_status = DISABLED;
 
+/* from funct_elevator.c */
 extern unsigned int elevator_position;
 extern unsigned int elevator_status;
+extern unsigned int elevator_old_status;
+
+/* from funct_led.c */
+extern unsigned int blink_counter;
 
 void RIT_IRQHandler (void)
 {				
 	/*****************************************************
 	** actions to do with respect to the elevator status
 	*****************************************************/
-	switch(elevator_status) {
-		case ARRIVED:
-			LED_blink(STATUS_LED, HZ_5); 
+	switch(elevator_status) { // FREE, REACHING_USER, BUSY, STOPPED, ARRIVED
+		
+		case FREE:
+			/* first floor button pressed */
+			if((LPC_GPIO2->FIOPIN & (1<<11)) == 0){ /* read button - pin port 2 --> if(PIN in pos 11 is already pressed) then ... */
+				switch(state_key1){
+					case 0:
+						state_key1++;
+						break;
+					case 1:
+						call_elevator(UPSTAIRS); // first floor (position 288)
+						state_key1++;
+						break;
+					default:
+						break;
+				}
+			} else {	/* button released */
+				state_key1 = 0;			
+			}
+			/* ground floor button pressed */
+			if((LPC_GPIO2->FIOPIN & (1<<12)) == 0){ /* read button - pin port 2 --> if(PIN in pos 11 is already pressed) then ... */
+				switch(state_key2){
+					case 0:
+						state_key2++;
+						break;
+					case 1:
+						call_elevator(DOWNSTAIRS); // ground floor (position 0)
+						state_key2++;
+						break;
+					default:
+						break;
+				}
+			} else {	/* button released */
+				state_key2 = 0;			
+			}
 			break;
-		case REACHING_UPSTAIRS:
-			move_elevator(1);
+		
+		case REACHING_USER:
+			elevator_reach_user();
 			break;
-		case REACHING_DOWNSTAIRS:
-			move_elevator(-1);
+		
+		case BUSY: 
+			/* nothing to do, it is moving using the joystick */
+			break;
+			
+		case STOPPED: 
+			blink_counter = 0;
+			/* TODO timer to free the elevator */
+			break;
+		
+		case ARRIVED: 
+			elevator_arrived();
+			break;
+		
 		default:
 			break;
 	}
-	if(elevator_status == ARRIVED) { // 3s = 3000ms; 25 ms polling timer => 120 
+	
+	switch(joystick_status) {
+	
+		case SELECT_ENABLED:
+			/* Joytick Select pressed */
+			if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){ 
+				joystick_status = MOVE_ENABLED;
+			}
+			break;
 		
-	} // TODO else if(elevator_status == REACHING_FLOOR?) { // controllare che tutte le funzioni siano bloccate }
-	
-	
-	/********************* 
-	** joystick management
-	*********************/
-
-	if(joystick_select_enabled == TRUE) {
-		if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){
-		/* Joytick Select pressed */
-			joystick_select_enabled = FALSE;
-			joystick_move_enabled = TRUE;
-		}
-	}
-
-	if(joystick_move_enabled == TRUE) {
-		if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){	
-			/* Joytick Up pressed */
-			if(elevator_position != UPSTAIRS) {
-				elevator_up();
+		case MOVE_ENABLED:
+			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
+				if(elevator_position != UPSTAIRS) {
+					elevator_status = BUSY;
+					elevator_up();
+				}
+			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
+				if(elevator_position != DOWNSTAIRS) {
+					elevator_status = BUSY;
+					elevator_down();
+				}
+			} else { /* Joytick Down & Up released */ 
+				elevator_status = STOPPED;
+				LED_On(STATUS_LED);
 			}
-		}
-	
-		if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){	
-			/* Joytick Down pressed */
-			if(elevator_position != DOWNSTAIRS) {
-				elevator_down();
-			}
-		}
-
-		if((LPC_GPIO1->FIOPIN & (1<<29)) != 0 && (LPC_GPIO1->FIOPIN & (1<<26)) != 0) {
-			/* Joytick Down & Up released */
-			elevator_pause(); 
-		}
+			break;
+		
+		case DISABLED:
+			/* nothing to do */
+			break;
+		
 	}
 	
-	/******************* 
-	** button management
-	*******************/
-
-	if((LPC_GPIO2->FIOPIN & (1<<11)) == 0){ /* read button - pin port 2 --> if(PIN in pos 11 is already pressed) then ... */
-		switch(state_key1){
-			case 0:
-				state_key1++;
-				break;
-			case 1:
-				call_elevator(UPSTAIRS); // first floor (position 288)
-				state_key1++;
-				break;
-			default:
-				break;
-		}
-	} else {	/* button released */
-		state_key1 = 0;			
-		//LPC_PINCON->PINSEL4    |= (1 << 22);     /* External interrupt 0 pin selection */
-	}
-
-	
-	if((LPC_GPIO2->FIOPIN & (1<<12)) == 0){ /* read button - pin port 2 --> if(PIN in pos 11 is already pressed) then ... */
-		switch(state_key2){
-			case 0:
-				state_key2++;
-				break;
-			case 1:
-				call_elevator(DOWNSTAIRS); // ground floor (position 0)
-				state_key2++;
-				break;
-			default:
-				break;
-		}
-	} else {	/* button released */
-		state_key2 = 0;			
-		//LPC_PINCON->PINSEL4    |= (1 << 24);     /* External interrupt 0 pin selection */
-	}
-
-  LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
-
-  return;
+	LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */
+	return;
 }
 
 /******************************************************************************

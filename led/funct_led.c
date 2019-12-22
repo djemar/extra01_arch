@@ -15,11 +15,10 @@
 
 #define LED_NUM     8                   /* Number of user LEDs                */
 const unsigned long led_mask[] = { 1UL<<0, 1UL<<1, 1UL<<2, 1UL<< 3, 1UL<< 4, 1UL<< 5, 1UL<< 6, 1UL<< 7 };
-
 extern unsigned char led_value;
 
 unsigned int leds_status[8] = { OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF};
-extern unsigned int elevator_status;
+unsigned int blink_counter;
 
 /*----------------------------------------------------------------------------
   Function that turns on requested LED
@@ -56,29 +55,24 @@ void LED_Out(unsigned int value) {
 }
 
 void LED_blink(unsigned int n_LED, unsigned int freq){
-  static unsigned int blink_counter;
-  
-  if(elevator_status == ARRIVED) {
-   static unsigned int time_counter = 0;
-   if(time_counter == 0) blink_counter = 0;
-   time_counter++;
-   if(time_counter == SEC_3) {
-      elevator_status = FREE;
-      time_counter = 0;
-      blink_counter = 0;
-      if(leds_status[n_LED] == ON) // shut off the LED if it is still on
-        LED_Off(n_LED);
-      return;
-   }
-  }
-
-  blink_counter++;
+	
+	/* TODO 
+	 * unsinged int old_freq;
+	 * if(old_freq != freq) { blink_counter = 0; time_counter = 0 }
+   */
+	
+	if(blink_counter == 0) {
+		/* switch led status (on/off) */
+		if(leds_status[STATUS_LED] == OFF) 
+			LED_On(n_LED);
+		else 
+			LED_Off(n_LED);
+	}
+	
+	blink_counter++;
+	
   if(blink_counter == freq) {
     blink_counter = 0;
-    if(leds_status[n_LED] == OFF) 
-      LED_On(n_LED);
-    else 
-      LED_Off(n_LED);
   }
 
 }
