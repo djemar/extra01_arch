@@ -88,7 +88,7 @@ void call_elevator(unsigned int user_floor) {
 	if(user_floor == elevator_position) {
 		joystick_status = SELECT_ENABLED;
 		elevator_status = READY;
-		LED_On(STATUS_LED);
+		//LED_On(STATUS_LED);
 	} else {
 		request_floor = user_floor;
 		elevator_status = REACHING_USER;
