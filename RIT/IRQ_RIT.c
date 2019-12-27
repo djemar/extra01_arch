@@ -13,6 +13,7 @@
 #include "../button_EXINT/button.h"
 #include "../const.h"
 #include "../led/led.h"
+#include "../timer/timer.h"
 
 /******************************************************************************
 ** Function name:		RIT_IRQHandler
@@ -27,6 +28,7 @@
 int state_key1=0;
 int state_key2=0;
 unsigned int joystick_status = DISABLED;
+unsigned int timer_alarm = DISABLED;
 
 /* from funct_elevator.c */
 extern unsigned int elevator_position;
@@ -42,7 +44,6 @@ void RIT_IRQHandler (void)
 	** actions to do with respect to the elevator status
 	*****************************************************/
 	switch(elevator_status) { // FREE, REACHING_USER, BUSY, STOPPED, ARRIVED
-		
 		case FREE:
 			/* first floor button pressed */
 			if((LPC_GPIO2->FIOPIN & (1<<11)) == 0){ /* read button - pin port 2 --> if(PIN in pos 11 is already pressed) then ... */
@@ -85,12 +86,22 @@ void RIT_IRQHandler (void)
 			elevator_reach_user();
 			break;
 		
-		case MOVING: 
+		case MOVING:
+			if(timer_alarm == ENABLED){
+				clear_alarm(0);
+				timer_alarm = DISABLED;
+			}
+			
 			break;
 			
 		case STOPPED: 
-			blink_counter = 0;
-			/* TODO timer to free the elevator */
+			blink_counter = 0; // why?
+			/* TODO timer alarm */
+			if(timer_alarm == DISABLED){
+				init_timer(0, MIN_1);
+				enable_timer(0);
+				timer_alarm = ENABLED;
+			}
 			break;
 		
 		case ARRIVED: 
@@ -102,11 +113,11 @@ void RIT_IRQHandler (void)
 	}
 	
 	switch(joystick_status) {
-	
 		case SELECT_ENABLED:
 			/* Joytick Select pressed */
 			if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){ 
 				joystick_status = MOVE_ENABLED;
+				LED_On(STATUS_LED);
 			}
 			break;
 		

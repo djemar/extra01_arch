@@ -516,6 +516,11 @@
               <FileType>5</FileType>
               <FilePath>.\timer\timer.h</FilePath>
             </File>
+            <File>
+              <FileName>funct_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\timer\funct_timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -9,6 +9,8 @@
 *********************************************************************************************************/
 #include "lpc17xx.h"
 #include "timer.h"
+#include "../const.h"
+#include "../led/led.h"
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -22,7 +24,8 @@
 
 void TIMER0_IRQHandler (void)
 {
-
+  LED_On(ALARM_LED_0);
+  LED_On(ALARM_LED_1);
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
   return;
 }

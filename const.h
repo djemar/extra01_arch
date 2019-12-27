@@ -12,6 +12,7 @@
 * 	JOYSTICK STATUS
 */
 #define DISABLED 0
+#define ENABLED 1
 #define SELECT_ENABLED 1
 #define MOVE_ENABLED 2
 
@@ -53,3 +54,5 @@
 *		- 3s = 3000ms => 25ms polling timer => SEC_3 = 120
 */
 #define SEC_3 120 // 0x78
+#define MIN_1 0x02FAF080    // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
+// 2 sec alarm = 25Mhz * 2s * 10^6‬ =0x02FAF080 TESTING ONLY
