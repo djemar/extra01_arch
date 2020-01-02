@@ -29,6 +29,7 @@ int state_key1=0;
 int state_key2=0;
 unsigned int joystick_status = DISABLED;
 unsigned int timer_alarm = DISABLED;
+unsigned int timer_reservation = DISABLED;
 
 /* from funct_elevator.c */
 extern unsigned int elevator_position;
@@ -79,7 +80,12 @@ void RIT_IRQHandler (void)
 			}
 			break;
 		
-		case READY:
+		case READY:	
+		if(timer_reservation == DISABLED){
+				init_timer(1, MIN_1);
+				enable_timer(1);
+				timer_reservation = ENABLED;
+			}
 			break;
 		
 		case REACHING_USER:
@@ -88,10 +94,9 @@ void RIT_IRQHandler (void)
 		
 		case MOVING:
 			if(timer_alarm == ENABLED){
-				clear_alarm(0);
+				clear_timer(0);
 				timer_alarm = DISABLED;
 			}
-			
 			break;
 			
 		case STOPPED: 

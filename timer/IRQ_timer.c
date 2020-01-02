@@ -8,9 +8,14 @@
 **--------------------------------------------------------------------------------------------------------
 *********************************************************************************************************/
 #include "lpc17xx.h"
-#include "timer.h"
 #include "../const.h"
 #include "../led/led.h"
+#include "../elevator/elevator.h"
+#include "timer.h"
+
+
+extern unsigned int timer_reservation;
+
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -42,6 +47,9 @@ void TIMER0_IRQHandler (void)
 ******************************************************************************/
 void TIMER1_IRQHandler (void)
 {
+  clear_timer(1); 
+	free_elevator();
+  timer_reservation = DISABLED;
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }
