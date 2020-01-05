@@ -72,6 +72,7 @@ void elevator_arrived() {
 void free_elevator() {
 	LED_Off(RESERVE_LED_0);
 	LED_Off(RESERVE_LED_1);
+	//TODO LED_Off(STATUS_LED);
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
 	elevator_status = FREE;

@@ -123,7 +123,13 @@ void RIT_IRQHandler (void)
 			if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){ 
 				joystick_status = MOVE_ENABLED;
 				LED_On(STATUS_LED);
+				if(timer_reservation == ENABLED){
+					clear_timer(1);
+					timer_reservation = DISABLED;
+				}
+				elevator_status = STOPPED;
 			}
+			
 			break;
 		
 		case MOVE_ENABLED:
