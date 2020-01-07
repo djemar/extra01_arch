@@ -82,14 +82,13 @@ void RIT_IRQHandler (void)
 		
 		case READY:	
 		if(timer_reservation == DISABLED){
-				init_timer(1, MIN_1);
-				enable_timer(1);
+				init_timer(0, MIN_1);
+				enable_timer(0);
 				timer_reservation = ENABLED;
 			}
 			break;
 		
 		case REACHING_USER:
-			elevator_reach_user();
 			break;
 		
 		case MOVING:

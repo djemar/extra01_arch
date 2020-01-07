@@ -15,6 +15,7 @@
 
 
 extern unsigned int timer_reservation;
+extern unsigned int elevator_status;
 
 
 /******************************************************************************
@@ -29,8 +30,26 @@ extern unsigned int timer_reservation;
 
 void TIMER0_IRQHandler (void)
 {
-  LED_On(ALARM_LED_0);
-  LED_On(ALARM_LED_1);
+  switch(elevator_status){
+    case STOPPED:
+      LED_On(ALARM_LED_0);
+      LED_On(ALARM_LED_1);
+      break;
+    case READY:
+      clear_timer(1); 
+	    free_elevator();
+      timer_reservation = DISABLED;
+      break;
+    case REACHING_USER:
+      elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
+	  	elevator_status = ARRIVED;
+		  joystick_status = DISABLED;
+		  blink_counter = 0;
+		  elevator_arrived();
+    case default:
+    break;
+  }
+  
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
   return;
 }
@@ -47,9 +66,7 @@ void TIMER0_IRQHandler (void)
 ******************************************************************************/
 void TIMER1_IRQHandler (void)
 {
-  clear_timer(1); 
-	free_elevator();
-  timer_reservation = DISABLED;
+  
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }

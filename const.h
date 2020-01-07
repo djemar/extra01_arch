@@ -53,6 +53,7 @@
 *		TIME CONSTS
 *		- 3s = 3000ms => 25ms polling timer => SEC_3 = 120
 */
+#define MS_7200 0x0ABA9500
 #define SEC_3 120 // 0x78
 #define MIN_1 0x59682F00    // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
 // 1 sec alarm = 25Mhz * 1s * 10^6‬ =0x017D7840 TESTING ONLY

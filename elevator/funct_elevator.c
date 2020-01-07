@@ -12,13 +12,6 @@ extern unsigned int joystick_status;
 extern unsigned int blink_counter;
 extern unsigned int leds_status[8];
 
-void elevator_reach_user() {
-	if(request_floor > elevator_position) 
-		elevator_up();
-	else
-		elevator_down();
-}
-
 void elevator_up() {
 	elevator_position++;
 	LED_blink(STATUS_LED, HZ_2);
@@ -93,6 +86,8 @@ void call_elevator(unsigned int user_floor) {
 	} else {
 		request_floor = user_floor;
 		elevator_status = REACHING_USER;
+		init_timer(0, MS_7200);
+		enable_timer(0);
 	}
 }
 
