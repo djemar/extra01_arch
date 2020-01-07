@@ -2,7 +2,7 @@
 #include "lpc17xx.h"
 #include "../led/led.h"
 
-unsigned int elevator_position = DOWNSTAIRS;
+unsigned int elevator_position = GROUND_FLOOR;
 unsigned int elevator_status = FREE;
 unsigned int elevator_old_status = FREE;
 unsigned int request_floor = 0;
@@ -23,7 +23,7 @@ void elevator_up() {
 	elevator_position++;
 	LED_blink(STATUS_LED, HZ_2);
 		
-	if(elevator_position == UPSTAIRS) {
+	if(elevator_position == FIRST_FLOOR) {
 		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
 		elevator_status = ARRIVED;
 		joystick_status = DISABLED;
@@ -38,7 +38,7 @@ void elevator_down() {
 	elevator_position--;
 	LED_blink(STATUS_LED, HZ_2);
 	
-	if(elevator_position == DOWNSTAIRS) {
+	if(elevator_position == GROUND_FLOOR) {
 		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
 		elevator_status = ARRIVED;
 		joystick_status = DISABLED;

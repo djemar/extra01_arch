@@ -21,10 +21,10 @@
 * 4 km/h = 1.11111 m/s
 * 8 m -> 8/1.11111 = 7.2 s = 7200 ms
 * polling: 25 ms --> 7200/25 = 288
-* elevator position [0, 288] = [DOWNSTAIRS, UPSTAIRS]
+* elevator position [0, 288] = [GROUND_FLOOR, FIRST_FLOOR]
 */
-#define DOWNSTAIRS 0
-#define UPSTAIRS 288 // 0x120
+#define GROUND_FLOOR 0
+#define FIRST_FLOOR 288 // 0x120
 
 /*
 *		LEDs
@@ -54,5 +54,5 @@
 *		- 3s = 3000ms => 25ms polling timer => SEC_3 = 120
 */
 #define SEC_3 120 // 0x78
-#define MIN_1 0x017D7840    // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
+#define MIN_1 0x59682F00    // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
 // 1 sec alarm = 25Mhz * 1s * 10^6‬ =0x017D7840 TESTING ONLY
