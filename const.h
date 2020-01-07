@@ -43,16 +43,16 @@
 
 /*
 *   BLINKING CONSTS
-*   - 2 Hz = 0.5s => 500ms; 25ms polling timer => HZ_2 = 20
-*   - 5 Hz = 0.2s => 200ms; 25ms polling timer => HZ_5 = 8
+*   - 2 Hz = 0.5s => 500ms
+*   - 5 Hz = 0.2s => 200ms
 */
-#define HZ_2 20 // 0x14
-#define HZ_5 8
+#define HZ_2 0x00BEBC20
+#define HZ_5 0x004C4B40
 
 /* 	
 *		TIME CONSTS
-*		- 3s = 3000ms => 25ms polling timer => SEC_3 = 120
+*		- 3s = 3000ms
 */
-#define SEC_3 120 // 0x78
-#define MIN_1 0x59682F00    // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
-// 1 sec alarm = 25Mhz * 1s * 10^6‬ =0x017D7840 TESTING ONLY
+#define SEC_3 0x047868C0 // 3 * 25 * 10^6
+#define MIN_1 0x59682F00 // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
+//#define MS_7200 0x0ABA9500

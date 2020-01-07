@@ -36,9 +36,6 @@ extern unsigned int elevator_position;
 extern unsigned int elevator_status;
 extern unsigned int elevator_old_status;
 
-/* from funct_led.c */
-extern unsigned int blink_counter;
-
 void RIT_IRQHandler (void)
 {				
 	/*****************************************************
@@ -100,8 +97,6 @@ void RIT_IRQHandler (void)
 			break;
 			
 		case STOPPED: 
-			blink_counter = 0; // why?
-			/* TODO timer alarm */
 			if(timer_alarm == DISABLED){
 				init_timer(0, MIN_1);
 				enable_timer(0);
@@ -109,10 +104,9 @@ void RIT_IRQHandler (void)
 			}
 			break;
 		
-		case ARRIVED: 
-			elevator_arrived();
+		case ARRIVED:
 			break;
-		
+
 		default:
 			break;
 	}
@@ -139,9 +133,20 @@ void RIT_IRQHandler (void)
 			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
 				elevator_status = MOVING;
 				elevator_down();
-			} else { /* Joytick Down & Up released */ 
-				elevator_status = STOPPED;
-				LED_On(STATUS_LED);
+			} else { /* Joytick Down & Up released */
+				if(elevator_status == MOVING) {
+					elevator_status = STOPPED;
+					LED_On(STATUS_LED);
+					/* DISABLE TIMER FOR BLINKING */
+					clear_timer(1);
+				}
+				break;
+			}
+			
+			if(elevator_status == STOPPED) {
+				/* ENABLE TIMER FOR BLINKING */
+				init_timer(1, HZ_2);
+				enable_timer(1);
 			}
 			break;
 		

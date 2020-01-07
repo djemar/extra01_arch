@@ -16,6 +16,9 @@
 
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
+extern unsigned int elevator_old_status;
+extern unsigned int elevator_position;
+extern unsigned int joystick_status;
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -39,6 +42,21 @@ void TIMER0_IRQHandler (void)
 	    free_elevator();
       timer_reservation = DISABLED;
       break;
+		case ARRIVED:
+			clear_timer(0);
+			clear_timer(1);
+			switch(elevator_old_status) {
+				case REACHING_USER:
+					elevator_status = READY;
+					joystick_status = SELECT_ENABLED;
+					break;
+				case MOVING:
+					free_elevator();
+					break;
+				default:
+					break;
+			}
+			break;
     default:
 			break;
   }
@@ -59,7 +77,7 @@ void TIMER0_IRQHandler (void)
 ******************************************************************************/
 void TIMER1_IRQHandler (void)
 {
-	
+	LED_blink(STATUS_LED);
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }
