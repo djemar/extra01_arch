@@ -9,6 +9,7 @@
 *********************************************************************************************************/
 #ifndef __TIMER_H
 #define __TIMER_H
+#include <stdint.h>
 
 /* init_timer.c */
 extern uint32_t init_timer( uint8_t timer_num, uint32_t timerInterval );
@@ -19,6 +20,7 @@ extern void reset_timer( uint8_t timer_num );
 extern void TIMER0_IRQHandler (void);
 extern void TIMER1_IRQHandler (void);
 
+extern void clear_timer(uint8_t timer_num);
 #endif /* end __TIMER_H */
 /*****************************************************************************
 **                            End Of File
