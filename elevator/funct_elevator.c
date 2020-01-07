@@ -20,9 +20,6 @@ void elevator_reach_user() {
 }
 
 void elevator_up() {
-	elevator_position++;
-	LED_blink(STATUS_LED, HZ_2);
-		
 	if(elevator_position == FIRST_FLOOR) {
 		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
 		elevator_status = ARRIVED;
@@ -30,14 +27,15 @@ void elevator_up() {
 		blink_counter = 0;
 		
 		elevator_arrived();
+	} else {
+		elevator_position++;
+		LED_blink(STATUS_LED, HZ_2);
 	}
+
 }
 	
 
 void elevator_down() {
-	elevator_position--;
-	LED_blink(STATUS_LED, HZ_2);
-	
 	if(elevator_position == GROUND_FLOOR) {
 		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
 		elevator_status = ARRIVED;
@@ -45,13 +43,14 @@ void elevator_down() {
 		blink_counter = 0;
 		
 		elevator_arrived();
+	} else {
+		elevator_position--;
+		LED_blink(STATUS_LED, HZ_2);
 	}
+	
 }
 
 void elevator_arrived() {
-	time_counter++;
-	LED_blink(STATUS_LED, HZ_5);
-	
 	if(time_counter == SEC_3) {
 		time_counter = 0;
 		blink_counter = 0;
@@ -66,6 +65,9 @@ void elevator_arrived() {
 			default:
 				break;
 		}
+	} else {
+		time_counter++;
+		LED_blink(STATUS_LED, HZ_5);
 	}
 }
 
@@ -89,7 +91,6 @@ void call_elevator(unsigned int user_floor) {
 	if(user_floor == elevator_position) {
 		joystick_status = SELECT_ENABLED;
 		elevator_status = READY;
-		//LED_On(STATUS_LED);
 	} else {
 		request_floor = user_floor;
 		elevator_status = REACHING_USER;

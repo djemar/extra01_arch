@@ -82,8 +82,8 @@ void RIT_IRQHandler (void)
 		
 		case READY:	
 		if(timer_reservation == DISABLED){
-				init_timer(1, MIN_1);
-				enable_timer(1);
+				init_timer(0, MIN_1);
+				enable_timer(0);
 				timer_reservation = ENABLED;
 			}
 			break;
@@ -124,7 +124,7 @@ void RIT_IRQHandler (void)
 				joystick_status = MOVE_ENABLED;
 				LED_On(STATUS_LED);
 				if(timer_reservation == ENABLED){
-					clear_timer(1);
+					clear_timer(0);
 					timer_reservation = DISABLED;
 				}
 				elevator_status = STOPPED;
@@ -134,15 +134,11 @@ void RIT_IRQHandler (void)
 		
 		case MOVE_ENABLED:
 			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
-				if(elevator_position != FIRST_FLOOR) {
-					elevator_status = MOVING;
-					elevator_up();
-				}
+				elevator_status = MOVING;
+				elevator_up();
 			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
-				if(elevator_position != GROUND_FLOOR) {
-					elevator_status = MOVING;
-					elevator_down();
-				}
+				elevator_status = MOVING;
+				elevator_down();
 			} else { /* Joytick Down & Up released */ 
 				elevator_status = STOPPED;
 				LED_On(STATUS_LED);

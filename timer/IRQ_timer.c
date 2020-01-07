@@ -15,7 +15,7 @@
 
 
 extern unsigned int timer_reservation;
-
+extern unsigned int elevator_status;
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -29,8 +29,20 @@ extern unsigned int timer_reservation;
 
 void TIMER0_IRQHandler (void)
 {
-  LED_On(ALARM_LED_0);
-  LED_On(ALARM_LED_1);
+  switch(elevator_status){
+    case STOPPED:
+      LED_On(ALARM_LED_0);
+      LED_On(ALARM_LED_1);
+      break;
+    case READY:
+      clear_timer(0); 
+	    free_elevator();
+      timer_reservation = DISABLED;
+      break;
+    default:
+			break;
+  }
+  
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
   return;
 }
@@ -47,9 +59,7 @@ void TIMER0_IRQHandler (void)
 ******************************************************************************/
 void TIMER1_IRQHandler (void)
 {
-  clear_timer(1); 
-	free_elevator();
-  timer_reservation = DISABLED;
+	
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }
