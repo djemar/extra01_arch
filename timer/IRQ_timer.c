@@ -16,6 +16,9 @@
 
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
+extern unsigned int elevator_old_status;
+extern unsigned int joystick_status;
+extern unsigned int blink_counter;
 
 
 /******************************************************************************
@@ -46,8 +49,9 @@ void TIMER0_IRQHandler (void)
 		  joystick_status = DISABLED;
 		  blink_counter = 0;
 		  elevator_arrived();
-    case default:
-    break;
+			break;
+		default:
+			break;
   }
   
   LPC_TIM0->IR = 1;			/* clear interrupt flag */
