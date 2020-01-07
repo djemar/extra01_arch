@@ -53,7 +53,7 @@ void RIT_IRQHandler (void)
 						state_key1++;
 						break;
 					case 1:
-						call_elevator(FIRST_FLOOR); // first floor (position 288)
+						call_elevator(UPSTAIRS); // first floor (position 288)
 						state_key1++;
 						break;
 					default:
@@ -69,7 +69,7 @@ void RIT_IRQHandler (void)
 						state_key2++;
 						break;
 					case 1:
-						call_elevator(GROUND_FLOOR); // ground floor (position 0)
+						call_elevator(DOWNSTAIRS); // ground floor (position 0)
 						state_key2++;
 						break;
 					default:
@@ -134,12 +134,12 @@ void RIT_IRQHandler (void)
 		
 		case MOVE_ENABLED:
 			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
-				if(elevator_position != FIRST_FLOOR) {
+				if(elevator_position != UPSTAIRS) {
 					elevator_status = MOVING;
 					elevator_up();
 				}
 			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
-				if(elevator_position != GROUND_FLOOR) {
+				if(elevator_position != DOWNSTAIRS) {
 					elevator_status = MOVING;
 					elevator_down();
 				}
