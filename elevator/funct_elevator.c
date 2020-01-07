@@ -72,7 +72,7 @@ void elevator_arrived() {
 void free_elevator() {
 	LED_Off(RESERVE_LED_0);
 	LED_Off(RESERVE_LED_1);
-	//TODO LED_Off(STATUS_LED);
+	LED_Off(STATUS_LED);
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
 	elevator_status = FREE;
@@ -81,10 +81,10 @@ void free_elevator() {
 
 void call_elevator(unsigned int user_floor) {
 	NVIC_DisableIRQ(EINT1_IRQn);
-  NVIC_DisableIRQ(EINT2_IRQn);
+  	NVIC_DisableIRQ(EINT2_IRQn);
 
-  LED_On(RESERVE_LED_0);
-  LED_On(RESERVE_LED_1);
+	LED_On(RESERVE_LED_0);
+	LED_On(RESERVE_LED_1);
 
 	if(user_floor == elevator_position) {
 		joystick_status = SELECT_ENABLED;
