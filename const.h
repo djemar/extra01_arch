@@ -21,10 +21,10 @@
 * 4 km/h = 1.11111 m/s
 * 8 m -> 8/1.11111 = 7.2 s = 7200 ms
 * polling: 25 ms --> 7200/25 = 288
-* elevator position [0, 288] = [DOWNSTAIRS, UPSTAIRS]
+* elevator position [0, 288] = [GROUND_FLOOR, FIRST_FLOOR]
 */
-#define DOWNSTAIRS 0
-#define UPSTAIRS 288 // 0x120
+#define GROUND_FLOOR 0
+#define FIRST_FLOOR 288 // 0x120
 
 /*
 *		LEDs
