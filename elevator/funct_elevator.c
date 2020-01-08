@@ -53,6 +53,7 @@ void free_elevator() {
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
 	elevator_status = FREE;
+	joystick_status = DISABLED;
 }
 
 void call_elevator(unsigned int user_floor) {

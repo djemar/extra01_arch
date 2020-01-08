@@ -55,6 +55,7 @@ void TIMER0_IRQHandler (void)
 			elevator_status = READY;
 			joystick_status = SELECT_ENABLED;
 			timer_blinking = DISABLED;
+			LED_Off(STATUS_LED);
 			break;
     default:
 			break;

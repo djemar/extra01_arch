@@ -92,7 +92,7 @@ void RIT_IRQHandler (void)
 				clear_timer(0);
 				timer_alarm = DISABLED;
 				LED_Off(ALARM_LED_0);
-   				LED_Off(ALARM_LED_1);
+   			LED_Off(ALARM_LED_1);
 			}
 			/* check if the elevator is arrived */
 			if(elevator_position == FIRST_FLOOR || elevator_position == GROUND_FLOOR) {
