@@ -34,10 +34,8 @@ unsigned int timer_reservation = DISABLED;
 /* from funct_elevator.c */
 extern unsigned int elevator_position;
 extern unsigned int elevator_status;
-extern unsigned int elevator_old_status;
-
-/* from funct_led.c */
-extern unsigned int blink_counter;
+extern unsigned int request_floor;
+extern unsigned int timer_blinking;
 
 void RIT_IRQHandler (void)
 {				
@@ -53,7 +51,7 @@ void RIT_IRQHandler (void)
 						state_key1++;
 						break;
 					case 1:
-						call_elevator(UPSTAIRS); // first floor (position 288)
+						call_elevator(FIRST_FLOOR); // first floor (position 288)
 						state_key1++;
 						break;
 					default:
@@ -69,7 +67,7 @@ void RIT_IRQHandler (void)
 						state_key2++;
 						break;
 					case 1:
-						call_elevator(DOWNSTAIRS); // ground floor (position 0)
+						call_elevator(GROUND_FLOOR); // ground floor (position 0)
 						state_key2++;
 						break;
 					default:
@@ -81,38 +79,56 @@ void RIT_IRQHandler (void)
 			break;
 		
 		case READY:	
-		if(timer_reservation == DISABLED){
-				init_timer(1, MIN_1);
-				enable_timer(1);
+			if(timer_reservation == DISABLED){
+				init_timer(0, MIN_1);
+				enable_timer(0);
 				timer_reservation = ENABLED;
 			}
 			break;
 		
-		case REACHING_USER:
-			elevator_reach_user();
-			break;
-		
 		case MOVING:
+			/* disable alarm timer */
 			if(timer_alarm == ENABLED){
 				clear_timer(0);
 				timer_alarm = DISABLED;
+				LED_Off(ALARM_LED_0);
+   				LED_Off(ALARM_LED_1);
+			}
+			/* check if the elevator is arrived */
+			if(elevator_position == FIRST_FLOOR || elevator_position == GROUND_FLOOR) {
+				if(joystick_status == DISABLED) { /* elevator has reached the user */
+					elevator_status = USER_REACHED;
+				} else { /* the user has reached the floor */
+					elevator_status = ARRIVED;
+					joystick_status = DISABLED;
+				}
+		
+				/* ENABLE TIMER FOR 3s BLINKING */
+				timer_blinking = ENABLED;		
+				clear_timer(0);
+				init_timer(0, SEC_3);
+				enable_timer(0);
+				clear_timer(1);
+				init_timer(1, HZ_5);
+				enable_timer(1);
+				
+			} else if(joystick_status == DISABLED) { /* check if the elevator is not arrived and not controlled by the user */ 
+				/* then the elevator (reaching user) */
+				if(request_floor == FIRST_FLOOR)
+					elevator_up();
+				else if(request_floor == GROUND_FLOOR)
+					elevator_down();
 			}
 			break;
 			
 		case STOPPED: 
-			blink_counter = 0; // why?
-			/* TODO timer alarm */
 			if(timer_alarm == DISABLED){
 				init_timer(0, MIN_1);
 				enable_timer(0);
 				timer_alarm = ENABLED;
 			}
 			break;
-		
-		case ARRIVED: 
-			elevator_arrived();
-			break;
-		
+			
 		default:
 			break;
 	}
@@ -124,7 +140,7 @@ void RIT_IRQHandler (void)
 				joystick_status = MOVE_ENABLED;
 				LED_On(STATUS_LED);
 				if(timer_reservation == ENABLED){
-					clear_timer(1);
+					clear_timer(0);
 					timer_reservation = DISABLED;
 				}
 				elevator_status = STOPPED;
@@ -134,18 +150,11 @@ void RIT_IRQHandler (void)
 		
 		case MOVE_ENABLED:
 			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
-				if(elevator_position != UPSTAIRS) {
-					elevator_status = MOVING;
-					elevator_up();
-				}
+				elevator_up();
 			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
-				if(elevator_position != DOWNSTAIRS) {
-					elevator_status = MOVING;
-					elevator_down();
-				}
-			} else { /* Joytick Down & Up released */ 
-				elevator_status = STOPPED;
-				LED_On(STATUS_LED);
+				elevator_down();	
+			} else { /* Joytick Down & Up released */
+				stop_elevator();
 			}
 			break;
 		
