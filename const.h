@@ -3,10 +3,10 @@
 */
 #define FREE 0
 #define READY 1
-#define REACHING_USER 2
-#define MOVING 3
-#define STOPPED 4
-#define ARRIVED 5
+#define MOVING 2
+#define STOPPED 3
+#define ARRIVED 4
+#define USER_REACHED 5
 
 /*
 * 	JOYSTICK STATUS

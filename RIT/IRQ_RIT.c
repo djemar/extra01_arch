@@ -34,7 +34,8 @@ unsigned int timer_reservation = DISABLED;
 /* from funct_elevator.c */
 extern unsigned int elevator_position;
 extern unsigned int elevator_status;
-extern unsigned int elevator_old_status;
+extern unsigned int request_floor;
+extern unsigned int timer_blinking;
 
 void RIT_IRQHandler (void)
 {				
@@ -78,21 +79,43 @@ void RIT_IRQHandler (void)
 			break;
 		
 		case READY:	
-		if(timer_reservation == DISABLED){
+			if(timer_reservation == DISABLED){
 				init_timer(0, MIN_1);
 				enable_timer(0);
 				timer_reservation = ENABLED;
 			}
 			break;
 		
-		case REACHING_USER:
-			elevator_reach_user();
-			break;
-		
 		case MOVING:
+			/* disable alarm timer */
 			if(timer_alarm == ENABLED){
 				clear_timer(0);
 				timer_alarm = DISABLED;
+			}
+			/* check if the elevator is arrived */
+			if(elevator_position == FIRST_FLOOR || elevator_position == GROUND_FLOOR) {
+				if(joystick_status == DISABLED) { /* elevator has reached the user */
+					elevator_status = USER_REACHED;
+				} else { /* the user has reached the floor */
+					elevator_status = ARRIVED;
+					joystick_status = DISABLED;
+				}
+		
+				/* ENABLE TIMER FOR 3s BLINKING */
+				timer_blinking = ENABLED;		
+				clear_timer(0);
+				init_timer(0, SEC_3);
+				enable_timer(0);
+				clear_timer(1);
+				init_timer(1, HZ_5);
+				enable_timer(1);
+				
+			} else if(joystick_status == DISABLED) { /* check if the elevator is not arrived and not controlled by the user */ 
+				/* then the elevator (reaching user) */
+				if(request_floor == FIRST_FLOOR)
+					elevator_up();
+				else if(request_floor == GROUND_FLOOR)
+					elevator_down();
 			}
 			break;
 			
@@ -103,10 +126,7 @@ void RIT_IRQHandler (void)
 				timer_alarm = ENABLED;
 			}
 			break;
-		
-		case ARRIVED:
-			break;
-
+			
 		default:
 			break;
 	}
@@ -128,25 +148,11 @@ void RIT_IRQHandler (void)
 		
 		case MOVE_ENABLED:
 			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
-				elevator_status = MOVING;
 				elevator_up();
 			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
-				elevator_status = MOVING;
-				elevator_down();
+				elevator_down();	
 			} else { /* Joytick Down & Up released */
-				if(elevator_status == MOVING) {
-					elevator_status = STOPPED;
-					LED_On(STATUS_LED);
-					/* DISABLE TIMER FOR BLINKING */
-					clear_timer(1);
-				}
-				break;
-			}
-			
-			if(elevator_status == STOPPED) {
-				/* ENABLE TIMER FOR BLINKING */
-				init_timer(1, HZ_2);
-				enable_timer(1);
+				stop_elevator();
 			}
 			break;
 		

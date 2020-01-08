@@ -5,57 +5,44 @@
 
 unsigned int elevator_position = GROUND_FLOOR;
 unsigned int elevator_status = FREE;
-unsigned int elevator_old_status = FREE;
 unsigned int request_floor = 0;
-unsigned int time_counter = 0;
+unsigned int timer_blinking = DISABLED;
 
 extern unsigned int joystick_status;
 extern unsigned int leds_status[8];
 
-void elevator_reach_user() {
-	if(request_floor == FIRST_FLOOR)
-		elevator_up();
-	else if(request_floor == GROUND_FLOOR)
-		elevator_down();
-}
-
 void elevator_up() {
-	if(elevator_position == FIRST_FLOOR) {
-		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
-		elevator_status = ARRIVED;
-		joystick_status = DISABLED;
-		
-		/* ENABLE TIMER FOR BLINKING */
-		clear_timer(0);
-		init_timer(0, SEC_3);
-		enable_timer(0);
-		clear_timer(1);
-		init_timer(1, HZ_5);
-		enable_timer(1);
-		
-	} else {
+	if(elevator_position < FIRST_FLOOR) {
+		elevator_status = MOVING;
 		elevator_position++;
+		if(!timer_blinking) { /* start blinking */
+			timer_blinking = ENABLED;
+			init_timer(1, HZ_2);
+			enable_timer(1);
+		}
 	}
-
 }
 
 void elevator_down() {
-	if(elevator_position == GROUND_FLOOR) {
-		elevator_old_status = elevator_status; /* it can be REACHING_USER or MOVING */
-		elevator_status = ARRIVED;
-		joystick_status = DISABLED;
-		
-		/* ENABLE TIMER FOR BLINKING */
-		clear_timer(0);
-		init_timer(0, SEC_3);
-		enable_timer(0);
-		clear_timer(1);
-		init_timer(1, HZ_5);
-		enable_timer(1);
-	} else {
+	if(elevator_position > GROUND_FLOOR) {
+		elevator_status = MOVING;
 		elevator_position--;
+		if(!timer_blinking) { /* start blinking */
+			timer_blinking = ENABLED;
+			init_timer(1, HZ_2);
+			enable_timer(1);
+		}
 	}
-	
+}
+
+void stop_elevator() {
+	elevator_status = STOPPED;
+	if(timer_blinking) { /* stop blinking */
+		timer_blinking = DISABLED;
+		LED_On(STATUS_LED);
+		/* DISABLE TIMER FOR BLINKING */
+		clear_timer(1);
+	}
 }
 
 void free_elevator() {
@@ -65,7 +52,6 @@ void free_elevator() {
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
 	elevator_status = FREE;
-	joystick_status = DISABLED;
 }
 
 void call_elevator(unsigned int user_floor) {
@@ -80,7 +66,13 @@ void call_elevator(unsigned int user_floor) {
 		elevator_status = READY;
 	} else {
 		request_floor = user_floor;
-		elevator_status = REACHING_USER;
+		elevator_status = MOVING;
+		
+		/* do the first movement */
+		if(request_floor == FIRST_FLOOR)
+			elevator_up();
+		else if(request_floor == GROUND_FLOOR)
+			elevator_down();
 		
 		/* ENABLE TIMER FOR BLINKING */
 		init_timer(1, HZ_2);

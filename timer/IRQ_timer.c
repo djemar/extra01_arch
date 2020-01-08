@@ -19,6 +19,7 @@ extern unsigned int elevator_status;
 extern unsigned int elevator_old_status;
 extern unsigned int elevator_position;
 extern unsigned int joystick_status;
+extern unsigned int timer_blinking;
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -45,17 +46,15 @@ void TIMER0_IRQHandler (void)
 		case ARRIVED:
 			clear_timer(0);
 			clear_timer(1);
-			switch(elevator_old_status) {
-				case REACHING_USER:
-					elevator_status = READY;
-					joystick_status = SELECT_ENABLED;
-					break;
-				case MOVING:
-					free_elevator();
-					break;
-				default:
-					break;
-			}
+			timer_blinking = DISABLED;
+			free_elevator();
+			break;
+		case USER_REACHED:
+			clear_timer(0);
+			clear_timer(1);
+			elevator_status = READY;
+			joystick_status = SELECT_ENABLED;
+			timer_blinking = DISABLED;
 			break;
     default:
 			break;
