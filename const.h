@@ -1,4 +1,9 @@
 /*
+*	IFDEF setup to speedup simulation
+*/
+#define SIMULATION
+
+/*
 *   ELEVATOR STATUS
 */
 #define FREE 0
@@ -24,8 +29,11 @@
 * elevator position [0, 288] = [GROUND_FLOOR, FIRST_FLOOR]
 */
 #define GROUND_FLOOR 0
+#ifdef SIMULATION
+#define FIRST_FLOOR 28 // 0x120
+#else
 #define FIRST_FLOOR 288 // 0x120
-
+#endif
 /*
 *		LEDs
 */
@@ -43,16 +51,27 @@
 
 /*
 *   BLINKING CONSTS
-*   - 2 Hz = 0.5s => 500ms
-*   - 5 Hz = 0.2s => 200ms
+*   - 2 Hz = 0.5s => 500ms 0x00BEBC20
+*   - 5 Hz = 0.2s => 200ms 0x004C4B40
 */
+#ifdef SIMULATION
+#define HZ_2 0x001312D0 //20Hz
+#define HZ_5 0x0007A120	//50Hz
+#else
 #define HZ_2 0x00BEBC20
 #define HZ_5 0x004C4B40
+#endif
 
 /* 	
 *		TIME CONSTS
 *		- 3s = 3000ms
 */
+#ifdef SIMULATION
+#define SEC_3 0x00BEBC20 // 0.5s
+#define MIN_1 0x02FAF080	// 2s
+#else
 #define SEC_3 0x047868C0 // 3 * 25 * 10^6
-#define MIN_1 0x59682F00 // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
+#define MIN_1 0x59682F00 // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00 || TESTING ONLY 1 sec = 0x017D7840‬
 //#define MS_7200 0x0ABA9500
+#endif
+
