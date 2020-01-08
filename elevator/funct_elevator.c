@@ -10,8 +10,13 @@ unsigned int timer_blinking = DISABLED;
 
 extern unsigned int joystick_status;
 extern unsigned int leds_status[8];
+extern unsigned int timer_alarm;
 
 void elevator_up() {
+	if(timer_alarm == ENABLED) {
+		LED_Off(ALARM_LED_0);
+    LED_Off(ALARM_LED_1);
+	}
 	if(elevator_position < FIRST_FLOOR) {
 		elevator_status = MOVING;
 		elevator_position++;
@@ -24,6 +29,10 @@ void elevator_up() {
 }
 
 void elevator_down() {
+	if(timer_alarm == ENABLED) {
+		LED_Off(ALARM_LED_0);
+    LED_Off(ALARM_LED_1);
+	}
 	if(elevator_position > GROUND_FLOOR) {
 		elevator_status = MOVING;
 		elevator_position--;
