@@ -9,7 +9,6 @@ unsigned int request_floor = 0;
 unsigned int timer_blinking = DISABLED;
 
 extern unsigned int joystick_status;
-extern unsigned int leds_status[8];
 extern unsigned int timer_alarm;
 
 void elevator_up() {
@@ -54,6 +53,14 @@ void stop_elevator() {
 	}
 }
 
+void move_elevator() {
+	/* function used when the elevator is reaching the user */
+	if(request_floor == FIRST_FLOOR)
+		elevator_up();
+	else if(request_floor == GROUND_FLOOR)
+		elevator_down();
+}
+
 void free_elevator() {
 	LED_Off(RESERVE_LED_0);
 	LED_Off(RESERVE_LED_1);
@@ -61,6 +68,7 @@ void free_elevator() {
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_EnableIRQ(EINT2_IRQn);
 	elevator_status = FREE;
+	joystick_status = DISABLED;
 }
 
 void call_elevator(unsigned int user_floor) {
