@@ -137,7 +137,7 @@
 =======
 >>>>>>> master
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(350=-1,-1,-1,-1,0)(250=-1,-1,-1,-1,0)(270=-1,-1,-1,-1,0)(313=-1,-1,-1,-1,0)(291=-1,-1,-1,-1,0)(302=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(113=-1,-1,-1,-1,0)(320=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(330=-1,-1,-1,-1,0)(332=-1,-1,-1,-1,0)(333=1135,223,1929,448,1)(334=1135,6,1929,231,1)(335=-1,-1,-1,-1,0)(336=-1,-1,-1,-1,0)(345=-1,-1,-1,-1,0)(346=-1,-1,-1,-1,0)(381=-1,-1,-1,-1,0)(382=-1,-1,-1,-1,0)(383=-1,-1,-1,-1,0)(384=-1,-1,-1,-1,0)(197=-1,-1,-1,-1,0)(198=-1,-1,-1,-1,0)(191=-1,-1,-1,-1,0)(192=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(261=-1,-1,-1,-1,0)(262=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(121=549,440,1247,1039,1)(122=1231,441,1929,1040,1)(123=-1,-1,-1,-1,0)(124=-1,-1,-1,-1,0)(170=816,5,1150,344,1)(142=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(400=-1,-1,-1,-1,0)(370=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(350=-1,-1,-1,-1,0)(250=-1,-1,-1,-1,0)(270=-1,-1,-1,-1,0)(313=-1,-1,-1,-1,0)(291=-1,-1,-1,-1,0)(302=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(113=-1,-1,-1,-1,0)(320=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(330=-1,-1,-1,-1,0)(332=-1,-1,-1,-1,0)(333=1126,223,1920,448,1)(334=1126,6,1920,231,1)(335=-1,-1,-1,-1,0)(336=-1,-1,-1,-1,0)(345=-1,-1,-1,-1,0)(346=-1,-1,-1,-1,0)(381=-1,-1,-1,-1,0)(382=-1,-1,-1,-1,0)(383=-1,-1,-1,-1,0)(384=-1,-1,-1,-1,0)(197=-1,-1,-1,-1,0)(198=-1,-1,-1,-1,0)(191=-1,-1,-1,-1,0)(192=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(261=-1,-1,-1,-1,0)(262=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(121=549,440,1247,1039,1)(122=1222,441,1920,1040,1)(123=-1,-1,-1,-1,0)(124=-1,-1,-1,-1,0)(170=816,5,1150,344,1)(142=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(400=-1,-1,-1,-1,0)(370=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -156,10 +156,14 @@
         </SetRegEntry>
       </TargetDriverDllRegistry>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> extra2
       <Breakpoint>
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <LineNumber>53</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -169,11 +173,17 @@
           <EnabledFlag>1</EnabledFlag>
           <Address>2968</Address>
 >>>>>>> 5c3c30b... blink final
+=======
+          <LineNumber>22</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+>>>>>>> extra2
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
+<<<<<<< HEAD
           <BreakIfRCount>1</BreakIfRCount>
 <<<<<<< HEAD
           <Filename>.\timer\IRQ_timer.c</Filename>
@@ -184,11 +194,21 @@
           <ExecCommand></ExecCommand>
           <Expression>\\sample\elevator/funct_elevator.c\86</Expression>
 >>>>>>> 5c3c30b... blink final
+=======
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\const.h</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+>>>>>>> extra2
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>27</LineNumber>
+=======
+          <LineNumber>44</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -204,7 +224,11 @@
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>52</LineNumber>
+=======
+          <LineNumber>45</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -220,7 +244,11 @@
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>22</LineNumber>
+=======
+          <LineNumber>52</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -229,15 +257,24 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
           <Filename>.\sample.c</Filename>
+=======
+          <Filename>.\const.h</Filename>
+>>>>>>> extra2
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>22</LineNumber>
           <EnabledFlag>0</EnabledFlag>
+=======
+          <LineNumber>86</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+>>>>>>> extra2
           <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
@@ -245,14 +282,22 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
           <Filename>.\startup_LPC17xx.s</Filename>
+=======
+          <Filename>.\elevator\funct_elevator.c</Filename>
+>>>>>>> extra2
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>5</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>44</LineNumber>
+=======
+          <LineNumber>22</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -261,14 +306,22 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
           <Filename>.\startup_LPC17xx.s</Filename>
+=======
+          <Filename>.\sample.c</Filename>
+>>>>>>> extra2
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>6</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>45</LineNumber>
+=======
+          <LineNumber>22</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -284,7 +337,11 @@
         <Bp>
           <Number>7</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>83</LineNumber>
+=======
+          <LineNumber>44</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -300,7 +357,11 @@
         <Bp>
           <Number>8</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>22</LineNumber>
+=======
+          <LineNumber>45</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -309,14 +370,22 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
           <Filename>.\system_LPC17xx.c</Filename>
+=======
+          <Filename>.\startup_LPC17xx.s</Filename>
+>>>>>>> extra2
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>9</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>44</LineNumber>
+=======
+          <LineNumber>52</LineNumber>
+>>>>>>> extra2
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -325,13 +394,18 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
           <Filename>.\system_LPC17xx.c</Filename>
+=======
+          <Filename>.\startup_LPC17xx.s</Filename>
+>>>>>>> extra2
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>10</Number>
           <Type>0</Type>
+<<<<<<< HEAD
           <LineNumber>45</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -348,6 +422,8 @@
         <Bp>
           <Number>11</Number>
           <Type>0</Type>
+=======
+>>>>>>> extra2
           <LineNumber>83</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -357,14 +433,21 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
           <Filename>.\system_LPC17xx.c</Filename>
+=======
+          <Filename>.\startup_LPC17xx.s</Filename>
+>>>>>>> extra2
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
       </Breakpoint>
+<<<<<<< HEAD
 =======
       <Breakpoint/>
 >>>>>>> master
+=======
+>>>>>>> extra2
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -433,10 +516,14 @@
       <DebugFlag>
         <trace>0</trace>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <periodic>1</periodic>
         <aLwin>0</aLwin>
 =======
         <periodic>0</periodic>
+=======
+        <periodic>1</periodic>
+>>>>>>> extra2
         <aLwin>1</aLwin>
 >>>>>>> master
         <aCover>0</aCover>
