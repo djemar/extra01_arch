@@ -9,7 +9,6 @@ unsigned int request_floor = 0;
 unsigned int timer_blinking = DISABLED;
 
 extern unsigned int joystick_status;
-extern unsigned int leds_status[8];
 extern unsigned int timer_alarm;
 
 void elevator_up() {
@@ -44,6 +43,14 @@ void stop_elevator() {
 		/* DISABLE TIMER FOR BLINKING */
 		clear_timer(1);
 	}
+}
+
+void move_elevator() {
+	/* function used when the elevator is reaching the user */
+	if(request_floor == FIRST_FLOOR)
+		elevator_up();
+	else if(request_floor == GROUND_FLOOR)
+		elevator_down();
 }
 
 void free_elevator() {

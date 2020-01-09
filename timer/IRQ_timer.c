@@ -16,8 +16,6 @@
 
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
-extern unsigned int elevator_old_status;
-extern unsigned int elevator_position;
 extern unsigned int joystick_status;
 extern unsigned int timer_blinking;
 

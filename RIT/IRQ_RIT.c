@@ -34,7 +34,6 @@ unsigned int timer_reservation = DISABLED;
 /* from funct_elevator.c */
 extern unsigned int elevator_position;
 extern unsigned int elevator_status;
-extern unsigned int request_floor;
 extern unsigned int timer_blinking;
 
 void RIT_IRQHandler (void)
@@ -42,7 +41,7 @@ void RIT_IRQHandler (void)
 	/*****************************************************
 	** actions to do with respect to the elevator status
 	*****************************************************/
-	switch(elevator_status) { // FREE, REACHING_USER, BUSY, STOPPED, ARRIVED
+	switch(elevator_status) {
 		case FREE:
 			/* first floor button pressed */
 			if((LPC_GPIO2->FIOPIN & (1<<11)) == 0){ /* read button - pin port 2 --> if(PIN in pos 11 is already pressed) then ... */
@@ -113,11 +112,8 @@ void RIT_IRQHandler (void)
 				enable_timer(1);
 				
 			} else if(joystick_status == DISABLED) { /* check if the elevator is not arrived and not controlled by the user */ 
-				/* then the elevator (reaching user) */
-				if(request_floor == FIRST_FLOOR)
-					elevator_up();
-				else if(request_floor == GROUND_FLOOR)
-					elevator_down();
+				/* then the elevator reaches the user */
+				move_elevator();
 			}
 			break;
 			
