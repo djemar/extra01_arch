@@ -12,7 +12,8 @@
 #include "../led/led.h"
 #include "../elevator/elevator.h"
 #include "timer.h"
-
+#include "../GLCD/GLCD.h" 
+#include "../TouchPanel/TouchPanel.h"
 
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
@@ -78,6 +79,43 @@ void TIMER1_IRQHandler (void)
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }
+
+/******************************************************************************
+** Function name:		Timer2_IRQHandler
+**
+** Descriptions:		Timer/Counter 2 interrupt handler
+**
+** parameters:			None
+** Returned value:		None
+**
+******************************************************************************/
+void TIMER2_IRQHandler (void)
+{
+	getDisplayPoint(&display, Read_Ads7846(), &matrix );
+	
+	if(display.x <= 240 && display.x <= 0) {
+		int i = 0;
+		i = i + 1;
+	}
+	
+	if(display.x > 32 && display.x < 80 &&
+			display.y > 278 && display.y < 294) {
+		/* save */
+				int i = 0;
+				i = i + 1;
+	} 
+	
+	if(display.x > 160 && display.x < 208 &&
+			display.y > 278 && display.y < 294) {
+		/* quit */
+				int i = 0;
+				i = i + 1;
+	}
+	
+	LPC_TIM2->IR = 1;			/* clear interrupt flag */
+  return;
+}
+
 
 /******************************************************************************
 **                            End Of File
