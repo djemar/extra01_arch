@@ -18,7 +18,6 @@ const unsigned long led_mask[] = { 1UL<<0, 1UL<<1, 1UL<<2, 1UL<< 3, 1UL<< 4, 1UL
 extern unsigned char led_value;
 
 unsigned int leds_status[8] = { OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF};
-unsigned int blink_counter;
 
 /*----------------------------------------------------------------------------
   Function that turns on requested LED
@@ -54,25 +53,12 @@ void LED_Out(unsigned int value) {
 	led_value = value;
 }
 
-void LED_blink(unsigned int n_LED, unsigned int freq){
+void LED_blink(unsigned int n_LED){
 	
-	/* TODO 
-	 * unsinged int old_freq;
-	 * if(old_freq != freq) { blink_counter = 0; time_counter = 0 }
-   */
+	/* switch led status (on/off) */
+	if(leds_status[STATUS_LED] == OFF) 
+		LED_On(n_LED);
+	else 
+		LED_Off(n_LED);
 	
-	if(blink_counter == 0) {
-		/* switch led status (on/off) */
-		if(leds_status[STATUS_LED] == OFF) 
-			LED_On(n_LED);
-		else 
-			LED_Off(n_LED);
-	}
-	
-	blink_counter++;
-	
-  if(blink_counter == freq) {
-    blink_counter = 0;
-  }
-
 }

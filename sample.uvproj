@@ -516,6 +516,11 @@
               <FileType>5</FileType>
               <FilePath>.\timer\timer.h</FilePath>
             </File>
+            <File>
+              <FileName>funct_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\timer\funct_timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -541,11 +546,6 @@
         <Group>
           <GroupName>joystick</GroupName>
           <Files>
-            <File>
-              <FileName>funct_joystick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\joystick\funct_joystick.c</FilePath>
-            </File>
             <File>
               <FileName>lib_joystick.c</FileName>
               <FileType>1</FileType>
