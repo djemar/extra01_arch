@@ -12,7 +12,8 @@
 #include "../led/led.h"
 #include "../elevator/elevator.h"
 #include "timer.h"
-
+#include "../GLCD/GLCD.h" 
+#include "../TouchPanel/TouchPanel.h"
 
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
@@ -79,6 +80,63 @@ void TIMER1_IRQHandler (void)
   LPC_TIM1->IR = 1;			/* clear interrupt flag */
   return;
 }
+
+/******************************************************************************
+** Function name:		Timer2_IRQHandler
+**
+** Descriptions:		Timer/Counter 2 interrupt handler
+**
+** parameters:			None
+** Returned value:		None
+**
+******************************************************************************/
+void TIMER2_IRQHandler (void)
+{
+	getDisplayPoint(&display, Read_Ads7846(), &matrix );
+	
+	switch(elevator_status) {
+		case FREE:
+			if(display.x > 48 && display.x < 192 &&
+					display.y > 160 && display.y < 176) {
+				/* enter maintenance mode */
+				elevator_status = MAINTENANCE;
+				LCD_MaintenanceMode();
+			}	
+			break;
+		case MAINTENANCE:
+			
+			if(display.x > 32 && display.x < 208 &&
+					display.y > 58 && display.y < 136) {
+				/* NOTE_1 */
+				LCD_MaintenanceModeSelection(NOTE_1);
+			} 
+			
+			if(display.x > 32 && display.x < 208 &&
+					display.y > 184 && display.y < 262) {
+				/* NOTE_1 */
+				LCD_MaintenanceModeSelection(NOTE_2);
+			} 			
+			
+			if(display.x > 32 && display.x < 80 &&
+					display.y > 273 && display.y < 299) {
+				/* save */
+			} 
+	
+			if(display.x > 160 && display.x < 208 &&
+					display.y > 273 && display.y < 299) {
+				/* quit */
+				LCD_HomeScreen();
+				elevator_status = FREE;
+			}	
+			break;
+		default:
+			break;
+	}
+	
+	LPC_TIM2->IR = 1;			/* clear interrupt flag */
+  return;
+}
+
 
 /******************************************************************************
 **                            End Of File

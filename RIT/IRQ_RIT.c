@@ -125,6 +125,9 @@ void RIT_IRQHandler (void)
 			}
 			break;
 			
+		case MAINTENANCE:
+			break;
+			
 		default:
 			break;
 	}
