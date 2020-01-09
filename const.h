@@ -7,6 +7,7 @@
 #define STOPPED 3
 #define ARRIVED 4
 #define USER_REACHED 5
+#define MAINTENANCE 6
 
 /*
 * 	JOYSTICK STATUS
@@ -56,3 +57,9 @@
 #define SEC_3 0x047868C0 // 3 * 25 * 10^6
 #define MIN_1 0x59682F00 // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
 //#define MS_7200 0x0ABA9500
+
+/* 	
+*		NOTE
+*/
+#define NOTE_1 1
+#define NOTE_2 2

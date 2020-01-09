@@ -23,6 +23,7 @@
 #include "GLCD.h" 
 #include "HzLib.h"
 #include "AsciiLib.h"
+#include "../const.h"
 
 /* Private variables ---------------------------------------------------------*/
 static uint8_t LCD_Code;
@@ -668,7 +669,47 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
     while ( *str != 0 );
 }
 
+void LCD_HomeScreen(void) {
+	LCD_Clear(Black);
+	GUI_Text(48, 160, (uint8_t *) " MAINTENANCE MODE ", White, Red);
+}
 
+void LCD_MaintenanceMode() {
+	LCD_Clear(Blue2);
+	GUI_Text(76, 26, (uint8_t *) "Maintenance", Yellow, Blue2);
+	
+	GUI_Text(60, 68, (uint8_t *) " Select note 1 ", White, Blue2);
+	GUI_Text(77, 110, (uint8_t *) " 440 Hz - A ", White, Blue2);
+
+	LCD_DrawLine(76, 152, 164, 152, White);
+
+	GUI_Text(60, 194, (uint8_t *) " Select note 2 ", White, Blue2);
+	GUI_Text(77, 236, (uint8_t *) " 440 Hz - A ", White, Blue2);
+	
+	GUI_Text(32, 278, (uint8_t *) " save ", White, Green);
+	GUI_Text(160, 278, (uint8_t *) " quit ", White, Red);
+	
+}
+
+
+void LCD_MaintenanceModeSelection(uint16_t note) {
+	switch(note) {
+		case NOTE_1:
+			GUI_Text(60, 68, (uint8_t *) " Select note 1 ", Blue2, White);
+			GUI_Text(77, 110, (uint8_t *) " 440 Hz - A ", Blue2, White);
+			GUI_Text(60, 194, (uint8_t *) " Select note 2 ", White, Blue2);
+			GUI_Text(77, 236, (uint8_t *) " 440 Hz - A ", White, Blue2);
+			break;
+		case NOTE_2:
+			GUI_Text(60, 194, (uint8_t *) " Select note 2 ", Blue2, White);
+			GUI_Text(77, 236, (uint8_t *) " 440 Hz - A ", Blue2, White);
+			GUI_Text(60, 68, (uint8_t *) " Select note 1 ", White, Blue2);
+			GUI_Text(77, 110, (uint8_t *) " 440 Hz - A ", White, Blue2);
+			break;
+		default:
+			break;
+	}
+}
 
 /*********************************************************************************************************
       END FILE

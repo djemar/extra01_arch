@@ -97,6 +97,10 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 void PutChinese(uint16_t Xpos,uint16_t Ypos,uint8_t *str,uint16_t Color,uint16_t bkColor);
 void GUI_Chinese(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor);
 
+void LCD_HomeScreen(void);
+void LCD_MaintenanceMode(void);
+void LCD_MaintenanceModeSelection(uint16_t note);
+	
 #endif 
 
 /*********************************************************************************************************
