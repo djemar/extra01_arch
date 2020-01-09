@@ -600,12 +600,12 @@ void LCD_DrawLine( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1 , uint16_t
 
 /******************************************************************************
 * Function Name  : PutChar
-* Description    : ��Lcd��������λ����ʾһ���ַ�
-* Input          : - Xpos: ˮƽ���� 
-*                  - Ypos: ��ֱ����  
-*				   - ASCI: ��ʾ���ַ�
-*				   - charColor: �ַ���ɫ   
-*				   - bkColor: ������ɫ 
+* Description    : Lcd screen displays a character
+* Input          : - Xpos: Horizontal coordinate
+*                  - Ypos: Vertical coordinate 
+*				   - ASCI: Displayed character
+*				   - charColor: Character color  
+*				   - bkColor: Background color 
 * Output         : None
 * Return         : None
 * Attention		 : None
@@ -614,7 +614,7 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, ui
 {
 	uint16_t i, j;
     uint8_t buffer[16], tmp_char;
-    GetASCIICode(buffer,ASCI);  /* ȡ��ģ���� */
+    GetASCIICode(buffer,ASCI);  /* get font data */
     for( i=0; i<16; i++ )
     {
         tmp_char = buffer[i];
@@ -622,11 +622,11 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, ui
         {
             if( (tmp_char >> 7 - j) & 0x01 == 0x01 )
             {
-                LCD_SetPoint( Xpos + j, Ypos + i, charColor );  /* �ַ���ɫ */
+                LCD_SetPoint( Xpos + j, Ypos + i, charColor );  /* Character color */	
             }
             else
             {
-                LCD_SetPoint( Xpos + j, Ypos + i, bkColor );  /* ������ɫ */
+                LCD_SetPoint( Xpos + j, Ypos + i, bkColor );  /* Background color */
             }
         }
     }
