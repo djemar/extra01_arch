@@ -74,14 +74,12 @@
 #define SEC_3 0x047868C0 // 3 * 25 * 10^6
 #define MIN_1 0x59682F00 // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00 || TESTING ONLY 1 sec = 0x017D7840‬
 //#define MS_7200 0x0ABA9500
-<<<<<<< HEAD
 #endif
 
-=======
+
 
 /* 	
 *		NOTE
 */
 #define NOTE_1 1
 #define NOTE_2 2
->>>>>>> extra2
