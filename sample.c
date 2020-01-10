@@ -36,11 +36,13 @@ int main (void) {
 	enable_timer(2);
 	
 	LED_init();                           /* LED Initialization                 */
-  BUTTON_init();												/* BUTTON Initialization              */
+  	BUTTON_init();												/* BUTTON Initialization              */
 	joystick_init();											/* Joystick Initialization            */
 	init_RIT(0x004C4B40>>1);							/* RIT Initialization 50/2 = 25 msec       	*/
 	enable_RIT();													/* RIT enabled												*/
 	
+	//ADC_init();														/* ADC Initialization									*/
+	//DAC_init();														/* DAC Initialization	  							*/
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= ~(0x2);						
 		
