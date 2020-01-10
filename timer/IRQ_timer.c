@@ -45,10 +45,6 @@ void TIMER0_IRQHandler (void)
 {
 	static int i=0;	
   switch(elevator_status){
-    case STOPPED:
-      LED_On(ALARM_LED_0);
-      LED_On(ALARM_LED_1);
-      break;
     case READY:
       clear_timer(0); 
 	    free_elevator();
@@ -67,6 +63,8 @@ void TIMER0_IRQHandler (void)
 			joystick_status = SELECT_ENABLED;
 			timer_blinking = DISABLED;
 			break;
+		case STOPPED:
+			elevator_emergency_mode(ENABLED);
 		case EMERGENCY:
 			reset_timer(2);
 			disable_timer(2);

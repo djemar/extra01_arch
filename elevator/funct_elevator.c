@@ -89,3 +89,24 @@ void call_elevator(unsigned int user_floor) {
 	}
 }
 
+void elevator_emergency_mode(int enable) {
+	if(enable) {
+		elevator_status = EMERGENCY;
+		LED_On(ALARM_LED_0);
+		LED_On(ALARM_LED_1);
+		
+		/* 4 Hz : 0x005F5E10 */
+		elevator_status = EMERGENCY;
+		init_timer(0, 0x005F5E10);
+		reset_timer(0);
+		enable_timer(0);
+			
+	} else {
+		elevator_status = STOPPED;
+		clear_timer(0);
+		clear_timer(2);
+		LED_Off(ALARM_LED_0);
+		LED_Off(ALARM_LED_1);
+	}
+}
+

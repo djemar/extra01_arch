@@ -133,72 +133,62 @@ void RIT_IRQHandler (void)
 			break;
 	}
 	
-	switch(elevator_status) {
-		case READY:
-		case MOVING:
-		case STOPPED:
-			/* emergency button pressed; user can enter emergency mode as soon as he is on the elevator */
-			if((LPC_GPIO2->FIOPIN & (1<<10)) == 0){ /* read button - pin port 2 --> if(PIN in pos 10 is already pressed) then ... */
-				switch(state_int0){
-					case 0:
+	if(joystick_status != DISABLED) {
+		/* user is on the elevator, check if user press emergency button: user can enter emergency mode as soon as he is on the elevator */
+		if((LPC_GPIO2->FIOPIN & (1<<10)) == 0){ /* read button - pin port 2 --> if(PIN in pos 10 is already pressed) then ... */
+			switch(state_int0){
+				case 1:
+					// if in emergency mode, exit
+					if(elevator_status == EMERGENCY) {
+						elevator_emergency_mode(DISABLED);
+						state_int0 = 0;
+					} else 
 						state_int0++;
-						break;
-					case 1:
-						//if in emergency mode, exit
-						state_int0++;
-						break;
-					case 80:	//	2s/25ms = 80
+					break;
+				case 80:	//	2s/25ms = 80
+					if(elevator_status != EMERGENCY) {
 						// enter emergency mode
-					
-						// TODO elevator_emergency();
-						/* 4 Hz : 0x005F5E10 */
-						elevator_status = EMERGENCY;
-						init_timer(0, 0x005F5E10);
-						reset_timer(0);
-						enable_timer(0);
+						elevator_emergency_mode(ENABLED);
+					}
+					break;
+				default:
+					state_int0++;
+					break;
+			}
+		} else {	/* button released */
+			state_int0 = 0;			
+		}
+			
+		if(elevator_status != EMERGENCY) {
+			/* check joystick status */
+			switch(joystick_status) {
+				case SELECT_ENABLED:
+					/* Joytick Select pressed */
+					if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){ 
+						joystick_status = MOVE_ENABLED;
+						LED_On(STATUS_LED);
+						if(timer_reservation == ENABLED){
+							clear_timer(0);
+							timer_reservation = DISABLED;
+						}
+						elevator_status = STOPPED;
+					}
+					break;
 				
-						break;
-					default:
-						state_int0++;
-						break;
-				}
-			} else {	/* button released */
-				state_int0 = 0;			
+				case MOVE_ENABLED:
+					if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
+						elevator_up();
+					} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
+						elevator_down();	
+					} else { /* Joytick Down & Up released */
+						stop_elevator();
+					}
+					break;
+					
+				default:
+					break;
 			}
-			break;
-		
-		default:
-			break;						
-	}
-	
-	switch(joystick_status) {
-		case SELECT_ENABLED:
-			/* Joytick Select pressed */
-			if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){ 
-				joystick_status = MOVE_ENABLED;
-				LED_On(STATUS_LED);
-				if(timer_reservation == ENABLED){
-					clear_timer(0);
-					timer_reservation = DISABLED;
-				}
-				elevator_status = STOPPED;
-			}
-			break;
-		
-		case MOVE_ENABLED:
-			if((LPC_GPIO1->FIOPIN & (1<<29)) == 0){ /* Joytick Up pressed */
-				elevator_up();
-			} else if((LPC_GPIO1->FIOPIN & (1<<26)) == 0){ /* Joytick Down pressed */
-				elevator_down();	
-			} else { /* Joytick Down & Up released */
-				stop_elevator();
-			}
-			break;
-		
-		case DISABLED:
-			/* nothing to do */
-			break;
-		
+		}
 	}
 	
 	LPC_RIT->RICTRL |= 0x1;	/* clear interrupt flag */

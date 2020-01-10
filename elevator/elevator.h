@@ -7,3 +7,5 @@ void move_elevator(void);
 void elevator_arrived(void);
 void free_elevator(void);
 void call_elevator(unsigned int user_floor);
+
+void elevator_emergency_mode(int enable);
