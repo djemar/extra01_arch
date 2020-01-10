@@ -14,11 +14,22 @@
 #include "timer.h"
 #include "../GLCD/GLCD.h" 
 #include "../TouchPanel/TouchPanel.h"
+#include "../dac/dac.h"
 
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
 extern unsigned int joystick_status;
 extern unsigned int timer_blinking;
+
+uint16_t SinTable[45] =
+{
+    410, 467, 523, 576, 627, 673, 714, 749, 778,
+    799, 813, 819, 817, 807, 789, 764, 732, 694, 
+    650, 602, 550, 495, 438, 381, 324, 270, 217,
+    169, 125, 87 , 55 , 30 , 12 , 2  , 0  , 6  ,   
+    20 , 41 , 70 , 105, 146, 193, 243, 297, 353
+};
+
 
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
@@ -32,6 +43,7 @@ extern unsigned int timer_blinking;
 
 void TIMER0_IRQHandler (void)
 {
+	static int i=0;	
   switch(elevator_status){
     case STOPPED:
       LED_On(ALARM_LED_0);
@@ -55,6 +67,16 @@ void TIMER0_IRQHandler (void)
 			joystick_status = SELECT_ENABLED;
 			timer_blinking = DISABLED;
 			break;
+		case EMERGENCY:
+			reset_timer(2);
+			disable_timer(2);
+			if(i%2==0)
+				init_timer(2, 2120);
+			else
+				init_timer(2, 1062);
+			i++;
+			enable_timer(2);
+			LED_blink(STATUS_LED);
     default:
 			break;
   }
@@ -91,6 +113,9 @@ void TIMER1_IRQHandler (void)
 ******************************************************************************/
 void TIMER2_IRQHandler (void)
 {
+	static int ticks=0;
+	int val;
+	
 	getDisplayPoint(&display, Read_Ads7846(), &matrix );
 	
 	switch(elevator_status) {
@@ -128,6 +153,14 @@ void TIMER2_IRQHandler (void)
 				elevator_status = FREE;
 			}	
 			break;
+			
+		case EMERGENCY: 
+			/* DAC management */	
+			// TODO int val = SinTable[ticks] * 1228 / 819; /* 4095 : 100 = x : 30; 1228 : 819 = x : 410 */
+			val = SinTable[ticks];
+			DAC_convert (val<<6);
+			ticks++;
+			if(ticks==45) ticks=0;
 		default:
 			break;
 	}

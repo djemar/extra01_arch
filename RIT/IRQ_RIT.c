@@ -149,8 +149,14 @@ void RIT_IRQHandler (void)
 						break;
 					case 80:	//	2s/25ms = 80
 						// enter emergency mode
-						state_int0++;
-						LED_Out(158);
+					
+						// TODO elevator_emergency();
+						/* 4 Hz : 0x005F5E10 */
+						elevator_status = EMERGENCY;
+						init_timer(0, 0x005F5E10);
+						reset_timer(0);
+						enable_timer(0);
+				
 						break;
 					default:
 						state_int0++;

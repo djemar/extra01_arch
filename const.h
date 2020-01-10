@@ -8,6 +8,7 @@
 #define ARRIVED 4
 #define USER_REACHED 5
 #define MAINTENANCE 6
+#define EMERGENCY 7
 
 /*
 * 	JOYSTICK STATUS
