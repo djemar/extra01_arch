@@ -693,7 +693,7 @@ void circleBres(int xc, int yc, int r, uint16_t color, uint16_t bkColor)
         } 
         else
             d = d + 4 * x + 6; 
-        drawCircle(xc, yc, x, y); 
+        drawCircle(xc, yc, x, y, color, bkColor); 
         delay_ms(50); 
     } 
 } 

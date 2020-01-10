@@ -133,6 +133,38 @@ void RIT_IRQHandler (void)
 			break;
 	}
 	
+	switch(elevator_status) {
+		case READY:
+		case MOVING:
+		case STOPPED:
+			/* emergency button pressed; user can enter emergency mode as soon as he is on the elevator */
+			if((LPC_GPIO2->FIOPIN & (1<<10)) == 0){ /* read button - pin port 2 --> if(PIN in pos 10 is already pressed) then ... */
+				switch(state_int0){
+					case 0:
+						state_int0++;
+						break;
+					case 1:
+						//if in emergency mode, exit
+						state_int0++;
+						break;
+					case 80:	//	2s/25ms = 80
+						// enter emergency mode
+						state_int0++;
+						LED_Out(158);
+						break;
+					default:
+						state_int0++;
+						break;
+				}
+			} else {	/* button released */
+				state_int0 = 0;			
+			}
+			break;
+		
+		default:
+			break;						
+	}
+	
 	switch(joystick_status) {
 		case SELECT_ENABLED:
 			/* Joytick Select pressed */
@@ -145,29 +177,6 @@ void RIT_IRQHandler (void)
 				}
 				elevator_status = STOPPED;
 			}
-
-			/* emergency button pressed; user can enter emergency mode as soon as he is on the elevator */
-			if((LPC_GPIO2->FIOPIN & (1<<10)) == 0){ /* read button - pin port 2 --> if(PIN in pos 10 is already pressed) then ... */
-				switch(state_int0){
-					case 0:
-						state_int0++;
-						break;
-					case 1:
-						//if in emergency mode, exit
-						// else state_int0++
-						break;
-					case 80:	//	2s/25ms = 80
-						// enter emergency mode
-						state_int0++;
-						break;
-					default:
-						state_int0++;
-						break;
-				}
-			} else {	/* button released */
-				state_int0 = 0;			
-			}
-			
 			break;
 		
 		case MOVE_ENABLED:

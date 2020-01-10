@@ -120,6 +120,7 @@ void TIMER2_IRQHandler (void)
 			if(display.x > 32 && display.x < 80 &&
 					display.y > 273 && display.y < 299) {
 				/* save */
+				circleBres(120, 160, 100, Yellow, Blue);
 			} 
 	
 			if(display.x > 160 && display.x < 208 &&

@@ -1,7 +1,7 @@
 /*
 *	IFDEF setup to speedup simulation
 */
-#define SIMULATION
+//#define SIMULATION
 
 /*
 *   ELEVATOR STATUS

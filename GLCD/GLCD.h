@@ -101,6 +101,9 @@ void LCD_HomeScreen(void);
 void LCD_MaintenanceMode(void);
 void LCD_MaintenanceModeSelection(uint16_t note);
 	
+void drawCircle(int xc, int yc, int x, int y, uint16_t color, uint16_t bkColor);
+void circleBres(int xc, int yc, int r, uint16_t color, uint16_t bkColor);
+
 #endif 
 
 /*********************************************************************************************************
