@@ -47,9 +47,12 @@
 *   BLINKING CONSTS
 *   - 2 Hz = 0.5s => 500ms
 *   - 5 Hz = 0.2s => 200ms
+*   - 4 Hz : 0x005F5E10
+
 */
 #define HZ_2 0x00BEBC20
 #define HZ_5 0x004C4B40
+#define HZ_4 0x005F5E10
 
 /* 	
 *		TIME CONSTS
@@ -64,3 +67,7 @@
 */
 #define NOTE_1 1
 #define NOTE_2 2
+
+
+
+/************************EOF*****************************/

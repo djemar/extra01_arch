@@ -95,9 +95,8 @@ void elevator_emergency_mode(int enable) {
 		LED_On(ALARM_LED_0);
 		LED_On(ALARM_LED_1);
 		
-		/* 4 Hz : 0x005F5E10 */
 		elevator_status = EMERGENCY;
-		init_timer(0, 0x005F5E10);
+		init_timer(0, HZ_4);
 		reset_timer(0);
 		enable_timer(0);
 			
