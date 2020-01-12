@@ -4,8 +4,8 @@
 **
 **--------------File Info-------------------------------------------------------------------------------
 ** File name:			GLCD.h
-** Descriptions:		Has been tested SSD1289¡¢ILI9320¡¢R61505U¡¢SSD1298¡¢ST7781¡¢SPFD5408B¡¢ILI9325¡¢ILI9328¡¢
-**						HX8346A¡¢HX8347A
+** Descriptions:		Has been tested SSD1289ï¿½ï¿½ILI9320ï¿½ï¿½R61505Uï¿½ï¿½SSD1298ï¿½ï¿½ST7781ï¿½ï¿½SPFD5408Bï¿½ï¿½ILI9325ï¿½ï¿½ILI9328ï¿½ï¿½
+**						HX8346Aï¿½ï¿½HX8347A
 **------------------------------------------------------------------------------------------------------
 ** Created by:			AVRman
 ** Created date:		2012-3-10
@@ -73,12 +73,12 @@
 
 /******************************************************************************
 * Function Name  : RGB565CONVERT
-* Description    : 24Î»×ª»»16Î»
+* Description    : 24Î»×ªï¿½ï¿½16Î»
 * Input          : - red: R
 *                  - green: G 
 *				   - blue: B
 * Output         : None
-* Return         : RGB ÑÕÉ«Öµ
+* Return         : RGB ï¿½ï¿½É«Öµ
 * Attention		 : None
 *******************************************************************************/
 #define RGB565CONVERT(red, green, blue)\
@@ -101,8 +101,11 @@ void LCD_HomeScreen(void);
 void LCD_MaintenanceMode(void);
 void LCD_MaintenanceModeSelection(uint16_t note);
 	
-void drawCircle(int xc, int yc, int x, int y, uint16_t color, uint16_t bkColor);
-void circleBres(int xc, int yc, int r, uint16_t color, uint16_t bkColor);
+void drawCircle(int xc, int yc, int x, int y, uint16_t color);
+void LCD_DrawEllipse(int xc, int yc, int r, uint16_t color);
+void LCD_DrawEllipseNew(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+
 
 #endif 
 

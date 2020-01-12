@@ -671,11 +671,11 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 
 // Function for circle-generation 
 // using Bresenham's algorithm 
-void circleBres(int xc, int yc, int r, uint16_t color, uint16_t bkColor) 
+void LCD_DrawEllipse(int xc, int yc, int r, uint16_t color) 
 { 
     int x = 0, y = r; 
     int d = 3 - 2 * r; 
-    drawCircle(xc, yc, x, y, color, bkColor); 
+    drawCircle(xc, yc, x, y, color); 
     while (y >= x) 
     { 
         // for each pixel we will 
@@ -693,12 +693,12 @@ void circleBres(int xc, int yc, int r, uint16_t color, uint16_t bkColor)
         } 
         else
             d = d + 4 * x + 6; 
-        drawCircle(xc, yc, x, y, color, bkColor); 
+        drawCircle(xc, yc, x, y, color); 
         delay_ms(50); 
     } 
 } 
 
-void drawCircle(int xc, int yc, int x, int y, uint16_t color, uint16_t bkColor) 
+void drawCircle(int xc, int yc, int x, int y, uint16_t color) 
 { 
     LCD_SetPoint(xc+x, yc+y, color); 
     LCD_SetPoint(xc-x, yc+y, color); 
@@ -708,6 +708,64 @@ void drawCircle(int xc, int yc, int x, int y, uint16_t color, uint16_t bkColor)
     LCD_SetPoint(xc-y, yc+x, color); 
     LCD_SetPoint(xc+y, yc-x, color); 
     LCD_SetPoint(xc-y, yc-x, color); 
+} 
+
+/*
+* https://github.com/nopnop2002/ili9325_rpi/blob/master/ili93xx.c#L909
+*/
+// Draw round
+// x0:Central X coordinate
+// y0:Central Y coordinate
+// r:radius
+// color:color
+void LCD_DrawEllipseNew(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
+{
+  int x;
+  int y;
+  int err;
+  int old_err;
+  
+  x=0;
+  y=-r;
+  err=2-2*r;
+  do{
+    LCD_SetPoint(x0-x,y0+y,color); 
+    LCD_SetPoint(x0-y,y0-x,color); 
+    LCD_SetPoint(x0+x,y0-y,color); 
+    LCD_SetPoint(x0+y,y0+x,color); 
+    if ((old_err=err)<=x)   err+=++x*2+1;
+    if (old_err>y || err>x) err+=++y*2+1;    
+  } while(y<0);
+  
+}
+
+// Draw round of filling
+// x0:Central X coordinate
+// y0:Central Y coordinate
+// r:radius
+// color:color
+void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
+{
+  int x;
+  int y;
+  int err;
+  int old_err;
+  int ChangeX;
+  
+  x=0;
+  y=-r;
+  err=2-2*r;
+  ChangeX=1;
+  do{
+    if(ChangeX) {
+      LCD_SetPoint(x0-x,y0-y,x0-x,y0+y,color);
+      LCD_SetPoint(x0+x,y0-y,x0+x,y0+y,color);
+    } // if
+    ChangeX=(old_err=err)<=x;
+    if (ChangeX)            err+=++x*2+1;
+    if (old_err>y || err>x) err+=++y*2+1;
+  } while(y<=0);
+    
 } 
 
 void LCD_HomeScreen(void) {
