@@ -770,6 +770,10 @@ void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
 
 void LCD_HomeScreen(void) {
 	LCD_Clear(Black);
+	LCD_DrawEllipseNew(120,160,100,Red);
+	LCD_DrawLine(120, 40,120,80, Red);
+	LCD_DrawLine(115, 40,119,80, Black);
+	LCD_DrawLine(121, 40,126,80, Black);
 	GUI_Text(48, 160, (uint8_t *) " MAINTENANCE MODE ", White, Red);
 }
 
