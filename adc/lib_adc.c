@@ -1,5 +1,6 @@
 #include "lpc17xx.h"
 #include "adc.h"
+#include "../led/led.h"
 
 /*----------------------------------------------------------------------------
   Function that initializes ADC
@@ -21,4 +22,5 @@ void ADC_init (void) {
 
 void ADC_start_conversion (void) {
 	LPC_ADC->ADCR |=  (1<<24);            /* Start A/D Conversion 				*/
+	LED_Out(0);
 }				 

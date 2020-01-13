@@ -8,6 +8,7 @@
 **--------------------------------------------------------------------------------------------------------
 *********************************************************************************************************/
 #include "lpc17xx.h"
+#include "string.h"
 #include "../const.h"
 #include "../led/led.h"
 #include "../elevator/elevator.h"
@@ -20,6 +21,18 @@ extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
 extern unsigned int joystick_status;
 extern unsigned int timer_blinking;
+
+extern unsigned int note1_status;
+extern unsigned int note2_status;
+extern unsigned int note1_freq;
+extern unsigned int note1_freq_tmp;
+extern unsigned int note2_freq;
+extern unsigned int note2_freq_tmp;
+extern char note1_GUI[];
+extern char note2_GUI[];
+extern char note1_GUI_tmp[];
+extern char note2_GUI_tmp[];
+
 
 uint16_t SinTable[45] =
 {
@@ -68,9 +81,9 @@ void TIMER0_IRQHandler (void)
 		case EMERGENCY:
 			clear_timer(2);
 			if(i%2==0)
-				init_timer(2, 2120);
+				init_timer(2, note1_freq);
 			else
-				init_timer(2, 1062);
+				init_timer(2, note2_freq);
 			i++;
 			enable_timer(2);
 			LED_blink(STATUS_LED);
@@ -130,18 +143,30 @@ void TIMER2_IRQHandler (void)
 			if(display.x > 32 && display.x < 208 &&
 					display.y > 58 && display.y < 136) {
 				/* NOTE_1 */
-				LCD_MaintenanceModeSelection(NOTE_1);
+				note1_status = ENABLED;
+				note2_status = DISABLED;
+				LCD_MaintenanceModeSelection();
 			} 
 			
 			if(display.x > 32 && display.x < 208 &&
 					display.y > 184 && display.y < 262) {
 				/* NOTE_1 */
-				LCD_MaintenanceModeSelection(NOTE_2);
+				note2_status = ENABLED;
+				note1_status = DISABLED;
+				LCD_MaintenanceModeSelection();
 			} 			
 			
 			if(display.x > 32 && display.x < 80 &&
 					display.y > 273 && display.y < 299) {
-				/* save */
+					/* save */
+				strcpy(note1_GUI, note1_GUI_tmp);
+				strcpy(note2_GUI, note2_GUI_tmp);
+				note1_freq = note1_freq_tmp;
+				note2_freq = note2_freq_tmp;
+				GUI_Text(32, 278, (uint8_t *) " save ", Green, White);
+				note1_status = DISABLED;
+				note2_status = DISABLED;
+				LCD_MaintenanceMode();
 			} 
 	
 			if(display.x > 160 && display.x < 208 &&
@@ -149,6 +174,8 @@ void TIMER2_IRQHandler (void)
 				/* quit */
 				LCD_HomeScreen();
 				elevator_status = FREE;
+				note1_status = DISABLED;
+				note2_status = DISABLED;
 			}	
 			break;
 			

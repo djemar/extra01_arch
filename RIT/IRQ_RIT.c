@@ -14,6 +14,7 @@
 #include "../const.h"
 #include "../led/led.h"
 #include "../timer/timer.h"
+#include "../adc/adc.h"
 
 /******************************************************************************
 ** Function name:		RIT_IRQHandler
@@ -68,6 +69,7 @@ void RIT_IRQHandler (void)
 			break;
 		
 		case MAINTENANCE:
+			ADC_start_conversion();
 			break;
 			
 		default:

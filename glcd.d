@@ -10,3 +10,4 @@
 .\glcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\glcd.o: GLCD\AsciiLib.h
 .\glcd.o: GLCD\../const.h
+.\glcd.o: GLCD\../led/led.h

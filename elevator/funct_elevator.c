@@ -102,6 +102,7 @@ void elevator_emergency_mode(int status) {
 		LED_On(ALARM_LED_1);
 		
 		clear_timer(0);
+		clear_timer(1);
 		init_timer(0, HZ_4);
 		enable_timer(0);
 	} else {
@@ -112,6 +113,7 @@ void elevator_emergency_mode(int status) {
 		if(status == USER_DISABLE) {
 			elevator_status = STOPPED;
 			joystick_status = MOVE_ENABLED;
+			LED_On(STATUS_LED);
 		} else if(status == RESCUE_DISABLE) {
 			elevator_status = REACHING_USER;
 			joystick_status = DISABLED;

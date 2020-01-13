@@ -85,9 +85,9 @@
 /*
 * EMERGENCY MODE
 */
-#define ENABLE 0
 #define USER_DISABLE 1
 #define RESCUE_DISABLE 2
+#define ENABLE 3
 
 
 

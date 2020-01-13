@@ -24,6 +24,7 @@
 #include "HzLib.h"
 #include "AsciiLib.h"
 #include "../const.h"
+#include "../led/led.h"
 
 /* Private variables ---------------------------------------------------------*/
 static uint8_t LCD_Code;
@@ -44,6 +45,15 @@ static uint8_t LCD_Code;
 #define  HX8347A    12 /* 0x0047 */	
 #define  LGDP4535   13 /* 0x4535 */  
 #define  SSD2119    14 /* 3.5 LCD 0x9919 */
+
+unsigned int note1_status = DISABLED;
+unsigned int note2_status = DISABLED;
+
+extern char note1_GUI[];
+extern char note2_GUI[];
+extern char note1_GUI_tmp[];
+extern char note2_GUI_tmp[];
+
 
 /*******************************************************************************
 * Function Name  : Lcd_Configuration
@@ -683,35 +693,30 @@ void LCD_MaintenanceMode() {
 	GUI_Text(76, 26, (uint8_t *) "Maintenance", Yellow, Blue2);
 	
 	GUI_Text(60, 68, (uint8_t *) " Select note 1 ", White, Blue2);
-	GUI_Text(77, 110, (uint8_t *) " 440 Hz - A ", White, Blue2);
+	GUI_Text(77, 110, (uint8_t *) note1_GUI, White, Blue2);
 
 	LCD_DrawLine(76, 152, 164, 152, White);
 
 	GUI_Text(60, 194, (uint8_t *) " Select note 2 ", White, Blue2);
-	GUI_Text(77, 236, (uint8_t *) " 440 Hz - A ", White, Blue2);
+	GUI_Text(77, 236, (uint8_t *) note2_GUI, White, Blue2);
 	
-	GUI_Text(32, 278, (uint8_t *) " save ", White, Green);
+	GUI_Text(32, 278, (uint8_t *) " save ", Black, Grey);
 	GUI_Text(160, 278, (uint8_t *) " quit ", White, Red);
 	
 }
 
 
-void LCD_MaintenanceModeSelection(uint16_t note) {
-	switch(note) {
-		case NOTE_1:
-			GUI_Text(60, 68, (uint8_t *) " Select note 1 ", Blue2, White);
-			GUI_Text(77, 110, (uint8_t *) " 440 Hz - A ", Blue2, White);
-			GUI_Text(60, 194, (uint8_t *) " Select note 2 ", White, Blue2);
-			GUI_Text(77, 236, (uint8_t *) " 440 Hz - A ", White, Blue2);
-			break;
-		case NOTE_2:
-			GUI_Text(60, 194, (uint8_t *) " Select note 2 ", Blue2, White);
-			GUI_Text(77, 236, (uint8_t *) " 440 Hz - A ", Blue2, White);
-			GUI_Text(60, 68, (uint8_t *) " Select note 1 ", White, Blue2);
-			GUI_Text(77, 110, (uint8_t *) " 440 Hz - A ", White, Blue2);
-			break;
-		default:
-			break;
+void LCD_MaintenanceModeSelection() {
+	if(note1_status == ENABLED) {
+		GUI_Text(60, 68, (uint8_t *) " Select note 1 ", Blue2, White);
+		GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, Blue2, White);
+		GUI_Text(60, 194, (uint8_t *) " Select note 2 ", White, Blue2);
+		GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, White, Blue2);
+	} else if(note2_status == ENABLED) {
+		GUI_Text(60, 194, (uint8_t *) " Select note 2 ", Blue2, White);
+		GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, Blue2, White);
+		GUI_Text(60, 68, (uint8_t *) " Select note 1 ", White, Blue2);
+		GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, White, Blue2);
 	}
 }
 

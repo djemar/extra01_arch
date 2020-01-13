@@ -99,7 +99,7 @@ void GUI_Chinese(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint
 
 void LCD_HomeScreen(void);
 void LCD_MaintenanceMode(void);
-void LCD_MaintenanceModeSelection(uint16_t note);
+void LCD_MaintenanceModeSelection(void);
 	
 #endif 
 
