@@ -415,6 +415,8 @@ void LCD_Clear(uint16_t Color)
 	{
 		LCD_WriteData(Color);
 	}
+	
+	LED_Out(0);
 }
 
 /******************************************************************************
@@ -502,6 +504,8 @@ void LCD_SetPoint(uint16_t Xpos,uint16_t Ypos,uint16_t point)
 	}
 	LCD_SetCursor(Xpos,Ypos);
 	LCD_WriteReg(0x0022,point);
+	
+	LED_Out(0);
 }
 
 /******************************************************************************
