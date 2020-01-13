@@ -106,6 +106,8 @@ void LCD_DrawEllipse(int xc, int yc, int r, uint16_t color);
 void LCD_DrawEllipseNew(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 
+void LCD_icon(void);
+
 
 #endif 
 
