@@ -4,11 +4,12 @@
 #define FREE 0
 #define READY 1
 #define MOVING 2
-#define STOPPED 3
-#define ARRIVED 4
-#define USER_REACHED 5
-#define MAINTENANCE 6
-#define EMERGENCY 7
+#define REACHING_USER 3
+#define STOPPED 4
+#define ARRIVED 5
+#define USER_REACHED 6
+#define MAINTENANCE 7
+#define EMERGENCY 8
 
 /*
 * 	JOYSTICK STATUS
@@ -67,6 +68,26 @@
 */
 #define NOTE_1 1
 #define NOTE_2 2
+
+/*
+*	BUTTONS
+*/
+#define KEY_1 0
+#define KEY_2 1
+#define INT_0 2
+
+/*
+* JOYSTICKS
+*/
+#define JOYSTICK_SELECT 0
+#define JOYSTICK_MOVE 1
+
+/*
+* EMERGENCY MODE
+*/
+#define ENABLE 0
+#define USER_DISABLE 1
+#define RESCUE_DISABLE 2
 
 
 

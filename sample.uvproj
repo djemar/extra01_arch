@@ -541,6 +541,11 @@
               <FileType>5</FileType>
               <FilePath>.\RIT\RIT.h</FilePath>
             </File>
+            <File>
+              <FileName>funct_RIT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RIT\funct_RIT.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

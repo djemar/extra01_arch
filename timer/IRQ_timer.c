@@ -64,10 +64,9 @@ void TIMER0_IRQHandler (void)
 			timer_blinking = DISABLED;
 			break;
 		case STOPPED:
-			elevator_emergency_mode(ENABLED);
+			elevator_emergency_mode(ENABLE);
 		case EMERGENCY:
-			reset_timer(2);
-			disable_timer(2);
+			clear_timer(2);
 			if(i%2==0)
 				init_timer(2, 2120);
 			else
@@ -75,6 +74,7 @@ void TIMER0_IRQHandler (void)
 			i++;
 			enable_timer(2);
 			LED_blink(STATUS_LED);
+			break;
     default:
 			break;
   }
@@ -154,8 +154,9 @@ void TIMER2_IRQHandler (void)
 			
 		case EMERGENCY: 
 			/* DAC management */	
-			// TODO int val = SinTable[ticks] * 1228 / 819; /* 4095 : 100 = x : 30; 1228 : 819 = x : 410 */
-			val = SinTable[ticks];
+			/* MAX SinTable = 819; MAX 10 bit = 1023 -> 1023 : 100 = 819 : x -> x = 80 % */
+			/* SinTable[ticks] : 80 = x : 30 -> val30% = SinTable[ticks] * 30 / 80 */
+			val = SinTable[ticks] * 30 / 80;
 			DAC_convert (val<<6);
 			ticks++;
 			if(ticks==45) ticks=0;

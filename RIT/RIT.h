@@ -19,6 +19,13 @@ extern void disable_RIT( void );
 extern void reset_RIT( void );
 /* IRQ_RIT.c */
 extern void RIT_IRQHandler (void);
+/* funct_RIT.c */
+void check_button(int button);
+void check_joystick(int joystick_button);
+void enable_reservation_timer(void);
+void disable_alarm_timer(void);
+void check_elevator_arrived(void);
+void enable_alarm_timer(void);
 
 #endif /* end __RIT_H */
 /*****************************************************************************
