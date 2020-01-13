@@ -758,8 +758,8 @@ void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
   ChangeX=1;
   do{
     if(ChangeX) {
-      LCD_SetPoint(x0-x,y0-y,x0-x,y0+y,color);
-      LCD_SetPoint(x0+x,y0-y,x0+x,y0+y,color);
+      LCD_DrawLine(x0-x,y0-y,x0-x,y0+y,color);
+      LCD_DrawLine(x0+x,y0-y,x0+x,y0+y,color);
     } // if
     ChangeX=(old_err=err)<=x;
     if (ChangeX)            err+=++x*2+1;
@@ -770,8 +770,8 @@ void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color)
 
 void LCD_HomeScreen(void) {
 	LCD_Clear(Black);
-	LCD_DrawEllipseNew(120,160,100,Red);
-	LCD_DrawEllipseNew(120,160,99,Red);
+	LCD_FillEllipse(120,160,100,Red);
+	LCD_FillEllipse(120,160,80,Black);
 	LCD_DrawLine(120, 40,120,80, Red);
 	LCD_DrawLine(115, 55,119,65, Black);
 	LCD_DrawLine(121, 55,126,65, Black);
