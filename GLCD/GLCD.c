@@ -46,9 +46,9 @@ static uint8_t LCD_Code;
 #define  LGDP4535   13 /* 0x4535 */  
 #define  SSD2119    14 /* 3.5 LCD 0x9919 */
 
-unsigned int note1_status = DISABLED;
-unsigned int note2_status = DISABLED;
+unsigned int selected_note = NONE;
 
+extern char note_GUI[];
 extern char note1_GUI[];
 extern char note2_GUI[];
 extern char note1_GUI_tmp[];
@@ -511,7 +511,7 @@ void LCD_SetPoint(uint16_t Xpos,uint16_t Ypos,uint16_t point)
 	if( Xpos >= MAX_X || Ypos >= MAX_Y )
 	{
 		return;
-	}
+	}	
 	LCD_SetCursor(Xpos,Ypos);
 	LCD_WriteReg(0x0022,point);
 	
@@ -689,6 +689,8 @@ void LCD_HomeScreen(void) {
 }
 
 void LCD_MaintenanceMode() {
+	selected_note = NONE;
+	
 	LCD_Clear(Blue2);
 	GUI_Text(76, 26, (uint8_t *) "Maintenance", Yellow, Blue2);
 	
@@ -706,15 +708,16 @@ void LCD_MaintenanceMode() {
 }
 
 
-void LCD_MaintenanceModeSelection() {
-	if(note1_status == ENABLED) {
+void LCD_MaintenanceModeSelectNote(int note) {
+	selected_note = note;
+	if(selected_note == NOTE_1) {
 		GUI_Text(60, 68, (uint8_t *) " Select note 1 ", Blue2, White);
-		GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, Blue2, White);
+		GUI_Text(77, 110, (uint8_t *) note_GUI, Blue2, White);
 		GUI_Text(60, 194, (uint8_t *) " Select note 2 ", White, Blue2);
 		GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, White, Blue2);
-	} else if(note2_status == ENABLED) {
+	} else if(selected_note == NOTE_2) {
 		GUI_Text(60, 194, (uint8_t *) " Select note 2 ", Blue2, White);
-		GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, Blue2, White);
+		GUI_Text(77, 236, (uint8_t *) note_GUI, Blue2, White);
 		GUI_Text(60, 68, (uint8_t *) " Select note 1 ", White, Blue2);
 		GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, White, Blue2);
 	}

@@ -125,7 +125,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=140,169,386,506,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(350=150,179,478,490,0)(250=-1,-1,-1,-1,0)(270=-1,-1,-1,-1,0)(313=-1,-1,-1,-1,0)(291=-1,-1,-1,-1,0)(302=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(113=-1,-1,-1,-1,0)(320=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(330=-1,-1,-1,-1,0)(332=-1,-1,-1,-1,0)(333=1126,223,1920,448,0)(334=1126,6,1920,231,0)(335=-1,-1,-1,-1,0)(336=-1,-1,-1,-1,0)(345=-1,-1,-1,-1,0)(346=-1,-1,-1,-1,0)(381=-1,-1,-1,-1,0)(382=-1,-1,-1,-1,0)(383=-1,-1,-1,-1,0)(384=-1,-1,-1,-1,0)(197=-1,-1,-1,-1,0)(198=-1,-1,-1,-1,0)(191=-1,-1,-1,-1,0)(192=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(261=-1,-1,-1,-1,0)(262=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(121=1220,8,1918,607,1)(122=735,481,1433,1080,1)(123=1222,481,1920,1080,1)(124=-1,-1,-1,-1,0)(170=1455,288,1789,627,0)(142=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(400=-1,-1,-1,-1,0)(370=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=101,128,687,747,1)(240=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=140,169,386,506,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)(350=150,179,478,490,0)(250=-1,-1,-1,-1,0)(270=-1,-1,-1,-1,0)(313=-1,-1,-1,-1,0)(291=-1,-1,-1,-1,0)(302=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(113=-1,-1,-1,-1,0)(320=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(330=-1,-1,-1,-1,0)(332=-1,-1,-1,-1,0)(333=1126,223,1920,448,0)(334=1126,6,1920,231,0)(335=-1,-1,-1,-1,0)(336=-1,-1,-1,-1,0)(345=-1,-1,-1,-1,0)(346=-1,-1,-1,-1,0)(381=-1,-1,-1,-1,0)(382=-1,-1,-1,-1,0)(383=-1,-1,-1,-1,0)(384=-1,-1,-1,-1,0)(197=-1,-1,-1,-1,0)(198=-1,-1,-1,-1,0)(191=-1,-1,-1,-1,0)(192=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(261=-1,-1,-1,-1,0)(262=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(121=1220,8,1918,607,1)(122=735,481,1433,1080,1)(123=1209,481,1907,1080,1)(124=-1,-1,-1,-1,0)(170=1455,288,1789,627,0)(142=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(400=-1,-1,-1,-1,0)(370=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=1118,401,1704,1020,1)(240=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -147,9 +147,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>710</LineNumber>
+          <LineNumber>111</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>3250</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\RIT\funct_RIT.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sample\RIT/funct_RIT.c\111</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>711</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>21052</Address>
+          <Address>21074</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -158,10 +174,58 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\GLCD\GLCD.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sample\GLCD/GLCD.c\710</Expression>
+          <Expression>\\sample\GLCD/GLCD.c\711</Expression>
         </Bp>
         <Bp>
-          <Number>1</Number>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>39</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>458</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\sample.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sample\sample.c\39</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>38</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>448</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\sample.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sample\sample.c\38</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>36</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>444</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\sample.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sample\sample.c\36</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>54</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -177,7 +241,7 @@
           <Expression>\\sample\sample.c\54</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>6</Number>
           <Type>0</Type>
           <LineNumber>48</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -193,7 +257,7 @@
           <Expression>\\sample\sample.c\48</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>7</Number>
           <Type>0</Type>
           <LineNumber>47</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -209,7 +273,7 @@
           <Expression>\\sample\sample.c\47</Expression>
         </Bp>
         <Bp>
-          <Number>4</Number>
+          <Number>8</Number>
           <Type>0</Type>
           <LineNumber>53</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -225,7 +289,7 @@
           <Expression>\\sample\sample.c\53</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>9</Number>
           <Type>0</Type>
           <LineNumber>45</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -241,7 +305,7 @@
           <Expression>\\sample\sample.c\45</Expression>
         </Bp>
         <Bp>
-          <Number>6</Number>
+          <Number>10</Number>
           <Type>0</Type>
           <LineNumber>44</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -257,7 +321,7 @@
           <Expression>\\sample\sample.c\44</Expression>
         </Bp>
         <Bp>
-          <Number>7</Number>
+          <Number>11</Number>
           <Type>0</Type>
           <LineNumber>50</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -273,7 +337,7 @@
           <Expression>\\sample\sample.c\50</Expression>
         </Bp>
         <Bp>
-          <Number>8</Number>
+          <Number>12</Number>
           <Type>0</Type>
           <LineNumber>51</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -289,9 +353,9 @@
           <Expression>\\sample\sample.c\51</Expression>
         </Bp>
         <Bp>
-          <Number>9</Number>
+          <Number>13</Number>
           <Type>0</Type>
-          <LineNumber>708</LineNumber>
+          <LineNumber>710</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -305,73 +369,9 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>10</Number>
-          <Type>0</Type>
-          <LineNumber>22</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\sample.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>11</Number>
-          <Type>0</Type>
-          <LineNumber>23</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\sample.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>12</Number>
-          <Type>0</Type>
-          <LineNumber>24</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\sample.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>13</Number>
-          <Type>0</Type>
-          <LineNumber>25</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\sample.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
           <Number>14</Number>
           <Type>0</Type>
-          <LineNumber>26</LineNumber>
+          <LineNumber>723</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -380,14 +380,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\sample.c</Filename>
+          <Filename>.\GLCD\GLCD.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>15</Number>
           <Type>0</Type>
-          <LineNumber>27</LineNumber>
+          <LineNumber>22</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -403,7 +403,7 @@
         <Bp>
           <Number>16</Number>
           <Type>0</Type>
-          <LineNumber>28</LineNumber>
+          <LineNumber>23</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -419,7 +419,7 @@
         <Bp>
           <Number>17</Number>
           <Type>0</Type>
-          <LineNumber>29</LineNumber>
+          <LineNumber>24</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -435,7 +435,7 @@
         <Bp>
           <Number>18</Number>
           <Type>0</Type>
-          <LineNumber>46</LineNumber>
+          <LineNumber>25</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -451,7 +451,7 @@
         <Bp>
           <Number>19</Number>
           <Type>0</Type>
-          <LineNumber>52</LineNumber>
+          <LineNumber>26</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -467,7 +467,7 @@
         <Bp>
           <Number>20</Number>
           <Type>0</Type>
-          <LineNumber>55</LineNumber>
+          <LineNumber>27</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -483,7 +483,7 @@
         <Bp>
           <Number>21</Number>
           <Type>0</Type>
-          <LineNumber>58</LineNumber>
+          <LineNumber>28</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -499,7 +499,7 @@
         <Bp>
           <Number>22</Number>
           <Type>0</Type>
-          <LineNumber>22</LineNumber>
+          <LineNumber>29</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -508,14 +508,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\startup_LPC17xx.s</Filename>
+          <Filename>.\sample.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>23</Number>
           <Type>0</Type>
-          <LineNumber>23</LineNumber>
+          <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -524,14 +524,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\startup_LPC17xx.s</Filename>
+          <Filename>.\sample.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>24</Number>
           <Type>0</Type>
-          <LineNumber>24</LineNumber>
+          <LineNumber>46</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -540,14 +540,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\startup_LPC17xx.s</Filename>
+          <Filename>.\sample.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>25</Number>
           <Type>0</Type>
-          <LineNumber>25</LineNumber>
+          <LineNumber>52</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -556,14 +556,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\startup_LPC17xx.s</Filename>
+          <Filename>.\sample.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>26</Number>
           <Type>0</Type>
-          <LineNumber>26</LineNumber>
+          <LineNumber>55</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -572,14 +572,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\startup_LPC17xx.s</Filename>
+          <Filename>.\sample.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>27</Number>
           <Type>0</Type>
-          <LineNumber>27</LineNumber>
+          <LineNumber>58</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -588,14 +588,14 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\startup_LPC17xx.s</Filename>
+          <Filename>.\sample.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>28</Number>
           <Type>0</Type>
-          <LineNumber>28</LineNumber>
+          <LineNumber>22</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -611,7 +611,7 @@
         <Bp>
           <Number>29</Number>
           <Type>0</Type>
-          <LineNumber>29</LineNumber>
+          <LineNumber>23</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -627,7 +627,7 @@
         <Bp>
           <Number>30</Number>
           <Type>0</Type>
-          <LineNumber>36</LineNumber>
+          <LineNumber>24</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -643,7 +643,7 @@
         <Bp>
           <Number>31</Number>
           <Type>0</Type>
-          <LineNumber>37</LineNumber>
+          <LineNumber>25</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -659,7 +659,7 @@
         <Bp>
           <Number>32</Number>
           <Type>0</Type>
-          <LineNumber>38</LineNumber>
+          <LineNumber>26</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -675,7 +675,7 @@
         <Bp>
           <Number>33</Number>
           <Type>0</Type>
-          <LineNumber>39</LineNumber>
+          <LineNumber>27</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -691,7 +691,7 @@
         <Bp>
           <Number>34</Number>
           <Type>0</Type>
-          <LineNumber>46</LineNumber>
+          <LineNumber>28</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -707,7 +707,7 @@
         <Bp>
           <Number>35</Number>
           <Type>0</Type>
-          <LineNumber>52</LineNumber>
+          <LineNumber>29</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -723,7 +723,7 @@
         <Bp>
           <Number>36</Number>
           <Type>0</Type>
-          <LineNumber>55</LineNumber>
+          <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -739,7 +739,7 @@
         <Bp>
           <Number>37</Number>
           <Type>0</Type>
-          <LineNumber>58</LineNumber>
+          <LineNumber>46</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -755,7 +755,7 @@
         <Bp>
           <Number>38</Number>
           <Type>0</Type>
-          <LineNumber>59</LineNumber>
+          <LineNumber>52</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -771,7 +771,7 @@
         <Bp>
           <Number>39</Number>
           <Type>0</Type>
-          <LineNumber>78</LineNumber>
+          <LineNumber>55</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -787,7 +787,7 @@
         <Bp>
           <Number>40</Number>
           <Type>0</Type>
-          <LineNumber>83</LineNumber>
+          <LineNumber>58</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -802,6 +802,54 @@
         </Bp>
         <Bp>
           <Number>41</Number>
+          <Type>0</Type>
+          <LineNumber>59</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_LPC17xx.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>42</Number>
+          <Type>0</Type>
+          <LineNumber>78</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_LPC17xx.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>43</Number>
+          <Type>0</Type>
+          <LineNumber>83</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\startup_LPC17xx.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>44</Number>
           <Type>0</Type>
           <LineNumber>86</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -893,6 +941,16 @@
           <WinNumber>1</WinNumber>
           <ItemText>note1_GUI</ItemText>
         </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>note1_GUI_tmp</ItemText>
+        </Ww>
+        <Ww>
+          <count>16</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>note1_tmp</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -948,7 +1006,7 @@
 
   <Group>
     <GroupName>startup_file</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

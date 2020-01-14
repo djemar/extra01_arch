@@ -2,6 +2,7 @@
 #include "lpc17xx.h"
 #include "../led/led.h"
 #include "../timer/timer.h"
+#include "../RIT/RIT.h"
 
 unsigned int elevator_position = GROUND_FLOOR;
 unsigned int elevator_status = FREE;
@@ -71,14 +72,15 @@ void call_elevator(unsigned int user_floor) {
 
 	LED_On(RESERVE_LED_0);
 	LED_On(RESERVE_LED_1);
-
+	
+	if(elevator_status == EMERGENCY) {
+		elevator_emergency_mode(RESCUE_DISABLE);
+	}
+	
 	if(user_floor == elevator_position) {
 		joystick_status = SELECT_ENABLED;
 		elevator_status = READY;
-	} else {
-		if(elevator_status == EMERGENCY) {
-			elevator_emergency_mode(RESCUE_DISABLE);
-		}
+	} else {	
 		request_floor = user_floor;
 		elevator_status = REACHING_USER;
 		
@@ -96,6 +98,8 @@ void call_elevator(unsigned int user_floor) {
 
 void elevator_emergency_mode(int status) {
 	if(status == ENABLE) {
+		disable_alarm_timer();
+		disable_reservation_timer();
 		elevator_status = EMERGENCY;
 		joystick_status = DISABLED;
 		LED_On(ALARM_LED_0);
@@ -106,10 +110,11 @@ void elevator_emergency_mode(int status) {
 		init_timer(0, HZ_4);
 		enable_timer(0);
 	} else {
-		clear_timer(0);
-		clear_timer(2);
 		LED_Off(ALARM_LED_0);
 		LED_Off(ALARM_LED_1);
+		clear_timer(0);
+		timer_alarm = DISABLED;
+		clear_timer(2);
 		if(status == USER_DISABLE) {
 			elevator_status = STOPPED;
 			joystick_status = MOVE_ENABLED;
@@ -117,6 +122,7 @@ void elevator_emergency_mode(int status) {
 		} else if(status == RESCUE_DISABLE) {
 			elevator_status = REACHING_USER;
 			joystick_status = DISABLED;
+			LED_Off(STATUS_LED);
 		}
 	}
 }

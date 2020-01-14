@@ -22,12 +22,10 @@ extern unsigned int elevator_status;
 extern unsigned int joystick_status;
 extern unsigned int timer_blinking;
 
-extern unsigned int note1_status;
-extern unsigned int note2_status;
-extern unsigned int note1_freq;
-extern unsigned int note1_freq_tmp;
-extern unsigned int note2_freq;
-extern unsigned int note2_freq_tmp;
+extern unsigned int note1;
+extern unsigned int note1_tmp;
+extern unsigned int note2;
+extern unsigned int note2_tmp;
 extern char note1_GUI[];
 extern char note2_GUI[];
 extern char note1_GUI_tmp[];
@@ -72,6 +70,7 @@ void TIMER0_IRQHandler (void)
 		case USER_REACHED:
 			clear_timer(0);
 			clear_timer(1);
+			LED_Off(STATUS_LED);
 			elevator_status = READY;
 			joystick_status = SELECT_ENABLED;
 			timer_blinking = DISABLED;
@@ -81,9 +80,9 @@ void TIMER0_IRQHandler (void)
 		case EMERGENCY:
 			clear_timer(2);
 			if(i%2==0)
-				init_timer(2, note1_freq);
+				init_timer(2, note1);
 			else
-				init_timer(2, note2_freq);
+				init_timer(2, note2);
 			i++;
 			enable_timer(2);
 			LED_blink(STATUS_LED);
@@ -143,29 +142,23 @@ void TIMER2_IRQHandler (void)
 			if(display.x > 32 && display.x < 208 &&
 					display.y > 58 && display.y < 136) {
 				/* NOTE_1 */
-				note1_status = ENABLED;
-				note2_status = DISABLED;
-				LCD_MaintenanceModeSelection();
+				LCD_MaintenanceModeSelectNote(NOTE_1);
 			} 
 			
 			if(display.x > 32 && display.x < 208 &&
 					display.y > 184 && display.y < 262) {
-				/* NOTE_1 */
-				note2_status = ENABLED;
-				note1_status = DISABLED;
-				LCD_MaintenanceModeSelection();
+				/* NOTE_2 */
+				LCD_MaintenanceModeSelectNote(NOTE_2);
 			} 			
 			
 			if(display.x > 32 && display.x < 80 &&
 					display.y > 273 && display.y < 299) {
-					/* save */
+				/* save */
 				strcpy(note1_GUI, note1_GUI_tmp);
 				strcpy(note2_GUI, note2_GUI_tmp);
-				note1_freq = note1_freq_tmp;
-				note2_freq = note2_freq_tmp;
+				note1 = note1_tmp;
+				note2 = note2_tmp;
 				GUI_Text(32, 278, (uint8_t *) " save ", Green, White);
-				note1_status = DISABLED;
-				note2_status = DISABLED;
 				LCD_MaintenanceMode();
 			} 
 	
@@ -174,8 +167,8 @@ void TIMER2_IRQHandler (void)
 				/* quit */
 				LCD_HomeScreen();
 				elevator_status = FREE;
-				note1_status = DISABLED;
-				note2_status = DISABLED;
+				strcpy(note1_GUI_tmp, note1_GUI);
+				strcpy(note2_GUI_tmp, note2_GUI);
 			}	
 			break;
 			

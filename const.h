@@ -66,6 +66,7 @@
 /* 	
 *		NOTE
 */
+#define NONE 0
 #define NOTE_1 1
 #define NOTE_2 2
 

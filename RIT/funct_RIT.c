@@ -6,7 +6,6 @@
 #include "../led/led.h"
 #include "../timer/timer.h"
 
-/* TODO state_var should be static? */
 int state_key1=0;
 int state_key2=0;
 int state_int0=0;
@@ -81,13 +80,10 @@ void check_joystick(int joystick_button) {
 		
 		case JOYSTICK_SELECT:
 			/* Joytick Select pressed */ 
-			if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){  
+			if((LPC_GPIO1->FIOPIN & (1<<25)) == 0){				
 				joystick_status = MOVE_ENABLED; 
 				LED_On(STATUS_LED); 
-				if(timer_reservation == ENABLED){ 
-					clear_timer(0); 
-					timer_reservation = DISABLED; 
-				} 
+				disable_reservation_timer();
 				elevator_status = STOPPED; 
 			} 
 			break;
@@ -113,9 +109,26 @@ void check_joystick(int joystick_button) {
 
 void enable_reservation_timer() {
 	if(timer_reservation == DISABLED){
+		clear_timer(0);
 		init_timer(0, MIN_1);
 		enable_timer(0);
 		timer_reservation = ENABLED;
+	}
+}
+
+void disable_reservation_timer() {
+	if(timer_reservation == ENABLED){ 
+		clear_timer(0); 
+		timer_reservation = DISABLED; 
+	} 
+}
+
+void enable_alarm_timer() {
+	if(timer_alarm == DISABLED){
+		clear_timer(0);
+		init_timer(0, MIN_1);
+		enable_timer(0);
+		timer_alarm = ENABLED;
 	}
 }
 
@@ -124,8 +137,6 @@ void disable_alarm_timer() {
 	if(timer_alarm == ENABLED){
 		clear_timer(0);
 		timer_alarm = DISABLED;
-		LED_Off(ALARM_LED_0);
-		LED_Off(ALARM_LED_1);
 	}
 }
 
@@ -138,14 +149,6 @@ void enable_timer_3s() {
 	clear_timer(1);
 	init_timer(1, HZ_5);
 	enable_timer(1);
-}
-
-void enable_alarm_timer() {
-	if(timer_alarm == DISABLED){
-		init_timer(0, MIN_1);
-		enable_timer(0);
-		timer_alarm = ENABLED;
-	}
 }
 
 void check_elevator_arrived() { /* check if the elevator is arrived */

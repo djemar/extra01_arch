@@ -23,6 +23,7 @@ extern void RIT_IRQHandler (void);
 void check_button(int button);
 void check_joystick(int joystick_button);
 void enable_reservation_timer(void);
+void disable_reservation_timer(void);
 void disable_alarm_timer(void);
 void check_elevator_arrived(void);
 void enable_alarm_timer(void);
