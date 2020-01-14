@@ -90,6 +90,4 @@
 #define RESCUE_DISABLE 2
 #define ENABLE 3
 
-
-
 /************************EOF*****************************/
