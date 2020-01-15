@@ -9,11 +9,7 @@
 *********************************************************************************************************/
 #include "lpc17xx.h"
 #include "RIT.h"
-#include "../elevator/elevator.h"
-#include "../button_EXINT/button.h"
 #include "../const.h"
-#include "../led/led.h"
-#include "../timer/timer.h"
 #include "../adc/adc.h"
 
 /******************************************************************************

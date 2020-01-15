@@ -491,11 +491,6 @@
               <FileType>1</FileType>
               <FilePath>.\button_EXINT\lib_button.c</FilePath>
             </File>
-            <File>
-              <FileName>funct_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\button_EXINT\funct_button.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
