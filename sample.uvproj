@@ -516,6 +516,11 @@
               <FileType>1</FileType>
               <FilePath>.\timer\funct_timer.c</FilePath>
             </File>
+            <File>
+              <FileName>ASM_funct.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\ASM_funct.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
