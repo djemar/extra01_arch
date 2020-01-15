@@ -17,6 +17,8 @@
 #include "../TouchPanel/TouchPanel.h"
 #include "../dac/dac.h"
 
+extern int ASM_volume(int, int);
+
 extern unsigned int timer_reservation;
 extern unsigned int elevator_status;
 extern unsigned int joystick_status;
@@ -124,7 +126,7 @@ void TIMER1_IRQHandler (void)
 void TIMER2_IRQHandler (void)
 {
 	static int ticks=0;
-	int val;
+	volatile int val;
 	
 	getDisplayPoint(&display, Read_Ads7846(), &matrix );
 	
@@ -176,7 +178,7 @@ void TIMER2_IRQHandler (void)
 			/* DAC management */	
 			/* MAX SinTable = 819; MAX 10 bit = 1023 -> 1023 : 100 = 819 : x -> x = 80 % */
 			/* SinTable[ticks] : 80 = x : 30 -> val30% = SinTable[ticks] * 30 / 80 */
-			val = SinTable[ticks] * 30 / 80;
+			val = ASM_volume(SinTable[ticks], 30); /* val = SinTable[ticks] * 30 / 80; */
 			DAC_convert (val<<6);
 			ticks++;
 			if(ticks==45) ticks=0;
