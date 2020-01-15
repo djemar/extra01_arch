@@ -104,7 +104,7 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 //void LCD_DrawEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 //void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
 
-
+void LCD_icon(uint8_t x, uint8_t y); 
 void LCD_HomeScreen(void);
 void LCD_MaintenanceMode(void);
 void LCD_MaintenanceModeSelectNote(int note);

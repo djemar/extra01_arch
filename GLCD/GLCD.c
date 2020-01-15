@@ -802,6 +802,7 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 
 void LCD_HomeScreen(void) {
 	LCD_Clear(Black);
+	LCD_icon(120,160);
 	GUI_Text(48, 160, (uint8_t *) " MAINTENANCE MODE ", White, Red);
 }
 
@@ -842,12 +843,28 @@ void LCD_MaintenanceModeSelectNote(int note) {
 	}
 }
 
-void LCD_icon() { 
-	int x, y; 
-	for(x = 0; x < 58; x++) { 
-		for(y = 0; y < 58; y++) { 
-			if(icon[x][y] == 1)  
-				LCD_SetPoint(y, x, Red); 
+void LCD_icon(uint8_t x0, uint8_t y0) {
+	uint8_t x, y; 
+	for(x = x0; x < 56; x++) { 
+		for(y = y0; y < 56; y++) {
+			switch (icon[x][y])
+			{
+			case 0:
+				LCD_SetPoint(y, x, Black); 
+				break;
+			case 1:
+				LCD_SetPoint(y, x, FluorescentOrange); 
+				break;
+			case 2:
+				LCD_SetPoint(y, x, RedBrown); 
+				break;
+			case 3:
+				LCD_SetPoint(y, x, Grey); 
+				break;
+			
+			default:
+				break;
+			}  
 		} 
 	} 
 } 
