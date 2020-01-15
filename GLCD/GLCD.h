@@ -71,6 +71,13 @@
 #define Cyan           0x7FFF
 #define Yellow         0xFFE0
 
+#define Teal           0x2BF1
+#define RedBrown       0x9945
+#define Peach          0xFF96
+#define TigersEye      0xE4E7
+#define FluorescentOrange      0xFDE0
+#define Malachite      0x1E89
+
 /******************************************************************************
 * Function Name  : RGB565CONVERT
 * Description    : 24λת��16λ
@@ -96,18 +103,13 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, ui
 void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor);
 void PutChinese(uint16_t Xpos,uint16_t Ypos,uint8_t *str,uint16_t Color,uint16_t bkColor);
 void GUI_Chinese(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor);
+void LCD_DrawEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
+
 
 void LCD_HomeScreen(void);
 void LCD_MaintenanceMode(void);
-void LCD_MaintenanceModeSelection(uint16_t note);
-	
-void drawCircle(int xc, int yc, int x, int y, uint16_t color);
-void LCD_DrawEllipse(int xc, int yc, int r, uint16_t color);
-void LCD_DrawEllipseNew(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
-void LCD_FillEllipse(uint16_t x0, uint16_t y0, uint16_t r, uint16_t color);
-
-void LCD_icon(void);
-
+void LCD_MaintenanceModeSelectNote(int note);
 
 #endif 
 
