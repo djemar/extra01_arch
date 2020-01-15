@@ -132,7 +132,7 @@ void TIMER2_IRQHandler (void)
 	switch(elevator_status) {
 		case FREE:
 			if(display.x > 48 && display.x < 192 &&
-					display.y > 160 && display.y < 176) {
+					display.y > 142 && display.y < 162) {
 				/* enter maintenance mode */
 				elevator_status = MAINTENANCE;
 				LCD_MaintenanceMode();
