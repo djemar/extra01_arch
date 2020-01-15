@@ -20,6 +20,9 @@
 #include "GLCD/GLCD.h" 
 #include "TouchPanel/TouchPanel.h"
 
+#include "adc/adc.h"
+#include "dac/dac.h"
+
 /*----------------------------------------------------------------------------
   Main Program
  *----------------------------------------------------------------------------*/
@@ -41,8 +44,9 @@ int main (void) {
 	init_RIT(0x004C4B40>>1);							/* RIT Initialization 50/2 = 25 msec       	*/
 	enable_RIT();													/* RIT enabled												*/
 	
-	//ADC_init();														/* ADC Initialization									*/
-	//DAC_init();														/* DAC Initialization	  							*/
+	ADC_init();														/* ADC Initialization									*/
+	DAC_init();														/* DAC Initialization	  							*/
+	
 	LPC_SC->PCON |= 0x1;									/* power-down	mode										*/
 	LPC_SC->PCON &= ~(0x2);						
 		

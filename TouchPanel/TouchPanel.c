@@ -465,6 +465,7 @@ void TouchPanel_Calibrate(void)
    GUI_Text(10,10,"Touch crosshair to calibrate",0xffff,Black);   
    DelayUS(1000 * 500);
    DrawCross(DisplaySample[i].x,DisplaySample[i].y);
+		
    do
    {
    Ptr = Read_Ads7846();

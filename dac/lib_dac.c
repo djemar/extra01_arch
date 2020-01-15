@@ -13,3 +13,4 @@ void DAC_init (void) {
 void DAC_convert (int value) {
 	LPC_DAC->DACR = value;
 }				 
+
