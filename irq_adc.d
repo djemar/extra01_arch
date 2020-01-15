@@ -7,7 +7,6 @@
 .\irq_adc.o: C:\Keil_v5\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
 .\irq_adc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\irq_adc.o: adc\adc.h
-.\irq_adc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\irq_adc.o: adc\../led/led.h
 .\irq_adc.o: adc\../timer/timer.h
 .\irq_adc.o: adc\../const.h

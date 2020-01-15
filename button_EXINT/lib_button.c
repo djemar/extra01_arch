@@ -1,9 +1,9 @@
 
-#include "button.h"
 #include "lpc17xx.h"
+#include "button.h"
 
 /**
- * @brief  Function that initializes Buttons
+ * Function that initializes Buttons
  */
 
 void BUTTON_init(void) {

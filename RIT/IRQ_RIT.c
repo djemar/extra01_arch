@@ -1,10 +1,7 @@
 /*********************************************************************************************************
 **--------------File Info---------------------------------------------------------------------------------
 ** File name:           IRQ_RIT.c
-** Last modified Date:  2014-09-25
-** Last Version:        V1.00
-** Descriptions:        functions to manage T0 and T1 interrupts
-** Correlated files:    RIT.h
+** Descriptions:        functions to manage bouncing and elevator status
 **--------------------------------------------------------------------------------------------------------
 *********************************************************************************************************/
 #include "lpc17xx.h"
@@ -22,10 +19,10 @@
 **
 ******************************************************************************/
 
-unsigned int joystick_status = DISABLED;
+volatile uint8_t joystick_status = DISABLED;
 
 /* from funct_elevator.c */
-extern unsigned int elevator_status;
+extern uint8_t elevator_status;
 
 void RIT_IRQHandler (void)
 {				
@@ -80,12 +77,9 @@ void RIT_IRQHandler (void)
 		case MOVE_ENABLED:
 			check_joystick(JOYSTICK_MOVE);
 			break; 
-		 
-		case DISABLED: 
-			/* nothing to do */ 
-			break;
 		
-		default:
+		default: /* case DISABLED */
+			/* nothing to do */ 
 			break;
 	}
 	

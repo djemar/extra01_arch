@@ -1,22 +1,6 @@
-/****************************************Copyright (c)**************************************************                         
-**
-**                                 http://www.powermcu.com
-**
+/*******************************************************************************************************
 **--------------File Info-------------------------------------------------------------------------------
 ** File name:			GLCD.h
-** Descriptions:		Has been tested SSD1289、ILI9320、R61505U、SSD1298、ST7781、SPFD5408B、ILI9325、ILI9328、
-**						HX8346A、HX8347A
-**------------------------------------------------------------------------------------------------------
-** Created by:			AVRman
-** Created date:		2012-3-10
-** Version:				1.3
-** Descriptions:		The original version
-**
-**------------------------------------------------------------------------------------------------------
-** Modified by:			
-** Modified date:	
-** Version:
-** Descriptions:		
 ********************************************************************************************************/
 
 #ifndef __GLCD_H 
@@ -60,16 +44,20 @@
 #endif
 
 /* LCD color */
-#define White          0xFFFF
-#define Black          0x0000
-#define Grey           0xF7DE
-#define Blue           0x001F
-#define Blue2          0x051F
-#define Red            0xF800
-#define Magenta        0xF81F
-#define Green          0x07E0
-#define Cyan           0x7FFF
-#define Yellow         0xFFE0
+#define White						0xFFFF
+#define Black          	0x0000
+#define Grey           	0xF7DE
+#define Blue           	0x001F
+#define Blue2          	0x051F
+#define Red            	0xF800
+#define Magenta        	0xF81F
+#define Green          	0x07E0
+#define Cyan           	0x7FFF
+#define Yellow         	0xFFE0
+
+#define CogwheelColor		0x3CD6
+#define WrenchColor			0x1987
+#define BackgroundColor	0xF79E
 
 /******************************************************************************
 * Function Name  : RGB565CONVERT
@@ -98,7 +86,7 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 void LCD_HomeScreen(void);
 void LCD_MaintenanceMode(void);
 void LCD_MaintenanceModeSelectNote(int note);
-void LCD_icon(void);
+void LCD_MaintenanceIcon(void);
 
 #endif 
 

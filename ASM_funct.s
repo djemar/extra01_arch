@@ -12,6 +12,9 @@ ASM_volume
 				; R0 = sin value
 				; R1 = volume %
 				; val (R0) = R0 * R1 / 80; 80 = volume source sin.
+				; MAX SinTable = 819; MAX 10 bit = 1023 -> 1023 : 100 = 819 : x -> x = 80 %
+				; SinTable[ticks] : 80 = x : 30 -> val30% = SinTable[ticks] * 30 / 80 */
+				
 				MOV R4, #80
 				
 				MUL R0, R0, R1

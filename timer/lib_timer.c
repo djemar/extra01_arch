@@ -1,10 +1,7 @@
 /*********************************************************************************************************
 **--------------File Info---------------------------------------------------------------------------------
 ** File name:           lib_timer.h
-** Last modified Date:  2014-09-25
-** Last Version:        V1.00
 ** Descriptions:        atomic functions to be used by higher sw levels
-** Correlated files:    lib_timer.c, funct_timer.c, IRQ_timer.c
 **--------------------------------------------------------------------------------------------------------
 *********************************************************************************************************/
 #include "lpc17xx.h"
@@ -15,7 +12,7 @@
 **
 ** Descriptions:		Enable timer
 **
-** parameters:			timer number: 0 or 1
+** parameters:			timer number: 0, 1 or 2
 ** Returned value:		None
 **
 ******************************************************************************/
@@ -42,7 +39,7 @@ void enable_timer( uint8_t timer_num )
 **
 ** Descriptions:		Disable timer
 **
-** parameters:			timer number: 0 or 1
+** parameters:			timer number: 0, 1 or 2
 ** Returned value:		None
 **
 ******************************************************************************/
@@ -68,7 +65,7 @@ void disable_timer( uint8_t timer_num )
 **
 ** Descriptions:		Reset timer
 **
-** parameters:			timer number: 0 or 1
+** parameters:			timer number: 0, 1 or 2
 ** Returned value:		None
 **
 ******************************************************************************/
@@ -95,6 +92,12 @@ void reset_timer( uint8_t timer_num )
 	LPC_TIM2->TCR = regVal;
   }
   return;
+}
+
+void clear_timer(uint8_t timer_num)
+{
+    disable_timer(timer_num); 
+    reset_timer(timer_num);
 }
 
 uint32_t init_timer ( uint8_t timer_num, uint32_t TimerInterval )

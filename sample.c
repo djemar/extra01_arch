@@ -1,7 +1,5 @@
 /*----------------------------------------------------------------------------
  * Name:    sample.c
- * Purpose: to control led through EINT and joystick buttons
- * Note(s):
  *----------------------------------------------------------------------------
  *
  * This software is supplied "AS IS" without warranties of any kind.
@@ -9,17 +7,14 @@
  * Copyright (c) 2017 Politecnico di Torino. All rights reserved.
  *----------------------------------------------------------------------------*/
                   
-#include <stdio.h>
-#include "LPC17xx.H"                    /* LPC17xx definitions                */
+#include "LPC17xx.H"
 #include "led/led.h"
 #include "button_EXINT/button.h"
 #include "timer/timer.h"
 #include "RIT/RIT.h"
 #include "joystick/joystick.h"
-
 #include "GLCD/GLCD.h" 
 #include "TouchPanel/TouchPanel.h"
-
 #include "adc/adc.h"
 #include "dac/dac.h"
 

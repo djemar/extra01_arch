@@ -1,10 +1,6 @@
 /*********************************************************************************************************
 **--------------File Info---------------------------------------------------------------------------------
 ** File name:           IRQ_adc.c
-** Last modified Date:  20184-12-30
-** Last Version:        V1.00
-** Descriptions:        functions to manage A/D interrupts
-** Correlated files:    adc.h
 **--------------------------------------------------------------------------------------------------------       
 *********************************************************************************************************/
 
@@ -37,7 +33,6 @@ const char notes[8]={'C', 'B', 'A', 'G', 'F', 'E', 'D', 'C'};
 440Hz	k=1263		
 494Hz	k=1125		
 523Hz	k=1062		c5
-
 */
 
 int note;
@@ -52,7 +47,7 @@ char note2_GUI[] = " 440 Hz - A ";
 char note1_GUI_tmp[] = " 440 Hz - A ";
 char note2_GUI_tmp[] = " 440 Hz - A ";
 
-extern unsigned int selected_note;
+extern uint8_t selected_note;
 
 void ADC_IRQHandler(void) {
   int freq;
@@ -79,7 +74,5 @@ void ADC_IRQHandler(void) {
 			GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, Blue2, White);	
 			GUI_Text(32, 278, (uint8_t *) " save ", White, Green); /* save enabled */
 		}
-		
 	}
-	
 }

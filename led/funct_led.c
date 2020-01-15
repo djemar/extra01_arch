@@ -1,10 +1,7 @@
 /*********************************************************************************************************
 **--------------File Info---------------------------------------------------------------------------------
 ** File name:           funct_led.h
-** Last modified Date:  2014-09-25
-** Last Version:        V1.00
 ** Descriptions:        High level led management functions
-** Correlated files:    lib_led.c, funct_led.c
 **--------------------------------------------------------------------------------------------------------       
 *********************************************************************************************************/
 
@@ -15,9 +12,8 @@
 
 #define LED_NUM     8                   /* Number of user LEDs                */
 const unsigned long led_mask[] = { 1UL<<0, 1UL<<1, 1UL<<2, 1UL<< 3, 1UL<< 4, 1UL<< 5, 1UL<< 6, 1UL<< 7 };
-extern unsigned char led_value;
 
-unsigned int leds_status[8] = { OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF};
+volatile uint8_t leds_status[8] = { OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF};
 
 /*----------------------------------------------------------------------------
   Function that turns on requested LED
@@ -25,7 +21,6 @@ unsigned int leds_status[8] = { OFF, OFF, OFF, OFF, OFF, OFF, OFF, OFF};
 void LED_On(unsigned int num) {
 	leds_status[num] = ON;
   LPC_GPIO2->FIOPIN |= led_mask[num];
-	led_value = LPC_GPIO2->FIOPIN;
 }
 
 /*----------------------------------------------------------------------------
@@ -34,7 +29,6 @@ void LED_On(unsigned int num) {
 void LED_Off(unsigned int num) {
   leds_status[num] = OFF;
   LPC_GPIO2->FIOPIN &= ~led_mask[num];
-	led_value = LPC_GPIO2->FIOPIN;
 }
 
 /*----------------------------------------------------------------------------
@@ -50,11 +44,9 @@ void LED_Out(unsigned int value) {
       LED_Off(i);
     }
   }
-	led_value = value;
 }
 
 void LED_blink(unsigned int n_LED){
-	
 	/* switch led status (on/off) */
 	if(leds_status[STATUS_LED] == OFF) 
 		LED_On(n_LED);

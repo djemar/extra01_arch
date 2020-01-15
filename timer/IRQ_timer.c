@@ -1,10 +1,7 @@
 /*********************************************************************************************************
 **--------------File Info---------------------------------------------------------------------------------
 ** File name:           IRQ_timer.c
-** Last modified Date:  2014-09-25
-** Last Version:        V1.00
-** Descriptions:        functions to manage T0 and T1 interrupts
-** Correlated files:    timer.h
+** Descriptions:        functions to manage T0, T1, T2 interrupts
 **--------------------------------------------------------------------------------------------------------
 *********************************************************************************************************/
 #include "lpc17xx.h"
@@ -19,10 +16,10 @@
 
 extern int ASM_volume(int, int);
 
-extern unsigned int timer_reservation;
-extern unsigned int elevator_status;
-extern unsigned int joystick_status;
-extern unsigned int timer_blinking;
+extern uint8_t timer_reservation;
+extern uint8_t elevator_status;
+extern uint8_t joystick_status;
+extern uint8_t timer_blinking;
 
 extern unsigned int note1;
 extern unsigned int note1_tmp;
@@ -33,8 +30,7 @@ extern char note2_GUI[];
 extern char note1_GUI_tmp[];
 extern char note2_GUI_tmp[];
 
-
-uint16_t SinTable[45] =
+volatile uint16_t SinTable[45] =
 {
     410, 467, 523, 576, 627, 673, 714, 749, 778,
     799, 813, 819, 817, 807, 789, 764, 732, 694, 
@@ -47,7 +43,9 @@ uint16_t SinTable[45] =
 /******************************************************************************
 ** Function name:		Timer0_IRQHandler
 **
-** Descriptions:		Timer/Counter 0 interrupt handler
+** Descriptions:		Timer/Counter 0 interrupt handler, used when the elevator arrives,
+**									when user is in emergency or when someone call the elevator and 
+**									does not use it (in 1 min).
 **
 ** parameters:			None
 ** Returned value:		None
@@ -101,7 +99,7 @@ void TIMER0_IRQHandler (void)
 /******************************************************************************
 ** Function name:		Timer1_IRQHandler
 **
-** Descriptions:		Timer/Counter 1 interrupt handler
+** Descriptions:		Timer/Counter 1 interrupt handler, used for led blinking
 **
 ** parameters:			None
 ** Returned value:		None
@@ -117,7 +115,8 @@ void TIMER1_IRQHandler (void)
 /******************************************************************************
 ** Function name:		Timer2_IRQHandler
 **
-** Descriptions:		Timer/Counter 2 interrupt handler
+** Descriptions:		Timer/Counter 2 interrupt handler, used for display polling
+**								(MAINTENANCE MODE )or for DAC convertion (EMERGENCY MODE)
 **
 ** parameters:			None
 ** Returned value:		None
@@ -175,10 +174,7 @@ void TIMER2_IRQHandler (void)
 			break;
 			
 		case EMERGENCY: 
-			/* DAC management */	
-			/* MAX SinTable = 819; MAX 10 bit = 1023 -> 1023 : 100 = 819 : x -> x = 80 % */
-			/* SinTable[ticks] : 80 = x : 30 -> val30% = SinTable[ticks] * 30 / 80 */
-			val = ASM_volume(SinTable[ticks], 30); /* val = SinTable[ticks] * 30 / 80; */
+			val = ASM_volume(SinTable[ticks], 30); /* ASM function call */
 			DAC_convert (val<<6);
 			ticks++;
 			if(ticks==45) ticks=0;

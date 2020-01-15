@@ -1,6 +1,5 @@
 #include "button.h"
 #include "lpc17xx.h"
-#include "../RIT/RIT.h" 
 
 void EINT0_IRQHandler (void)	  	/* INT0														 */
 {	

@@ -1,29 +1,12 @@
-/****************************************Copyright (c)****************************************************
-**                                      
-**                                 http://www.powermcu.com
-**
+/*********************************************************************************************************
 **--------------File Info---------------------------------------------------------------------------------
 ** File name:               TouchPanel.c
-** Descriptions:            The TouchPanel application function
-**
-**--------------------------------------------------------------------------------------------------------
-** Created by:              AVRman
-** Created date:            2010-11-7
-** Version:                 v1.0
-** Descriptions:            The original version
-**
-**--------------------------------------------------------------------------------------------------------
-** Modified by:             
-** Modified date:           
-** Version:                 
-** Descriptions:            
-**
+** Descriptions:            The TouchPanel application function        
 *********************************************************************************************************/
 
 /* Includes ------------------------------------------------------------------*/
 #include "../GLCD/GLCD.h"
 #include "../TouchPanel/TouchPanel.h"
-
 
 /* Private variables ---------------------------------------------------------*/
 Matrix 			matrix ;
@@ -462,7 +445,7 @@ void TouchPanel_Calibrate(void)
   for(i=0;i<3;i++)
   {
    LCD_Clear(Black);
-   GUI_Text(10,10,"Touch crosshair to calibrate",0xffff,Black);   
+   GUI_Text(10,10,(uint8_t *)"Touch crosshair to calibrate",0xffff,Black);   
    DelayUS(1000 * 500);
    DrawCross(DisplaySample[i].x,DisplaySample[i].y);
 		

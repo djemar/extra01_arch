@@ -6,19 +6,19 @@
 #include "../led/led.h"
 #include "../timer/timer.h"
 
-int state_key1=0;
-int state_key2=0;
-int state_int0=0;
-
-extern unsigned int elevator_status;
-extern unsigned int joystick_status;
+volatile uint8_t state_key1=0;
+volatile uint8_t state_key2=0;
+volatile uint8_t state_int0=0;
 
 /* timers status */
-unsigned int timer_alarm = DISABLED;
-unsigned int timer_reservation = DISABLED;
+volatile uint8_t timer_alarm = DISABLED;
+volatile uint8_t timer_reservation = DISABLED;
 
-extern unsigned int elevator_position;
-extern unsigned int timer_blinking;
+extern uint8_t elevator_status;
+extern uint8_t joystick_status;
+
+extern uint16_t elevator_position;
+extern uint8_t timer_blinking;
 
 void check_button(int button) {
 	switch(button) {

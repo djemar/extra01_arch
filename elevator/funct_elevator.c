@@ -4,12 +4,12 @@
 #include "../timer/timer.h"
 #include "../RIT/RIT.h"
 
-unsigned int elevator_position = GROUND_FLOOR;
-unsigned int elevator_status = FREE;
-unsigned int request_floor = 0;
-unsigned int timer_blinking = DISABLED;
+volatile uint16_t elevator_position = GROUND_FLOOR;
+volatile uint8_t elevator_status = FREE;
+volatile uint16_t request_floor = 0;
+volatile uint8_t timer_blinking = DISABLED;
 
-extern unsigned int joystick_status;
+extern uint8_t joystick_status;
 extern unsigned int timer_alarm;
 
 int elevator_up() {
