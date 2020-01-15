@@ -147,22 +147,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>181</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>2150</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\timer\IRQ_timer.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\sample\timer/IRQ_timer.c\181</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>39</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>458</Address>
@@ -177,7 +161,7 @@
           <Expression>\\sample\sample.c\39</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>1</Number>
           <Type>0</Type>
           <LineNumber>38</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -193,7 +177,7 @@
           <Expression>\\sample\sample.c\38</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>2</Number>
           <Type>0</Type>
           <LineNumber>36</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -209,7 +193,7 @@
           <Expression>\\sample\sample.c\36</Expression>
         </Bp>
         <Bp>
-          <Number>4</Number>
+          <Number>3</Number>
           <Type>0</Type>
           <LineNumber>54</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -225,7 +209,7 @@
           <Expression>\\sample\sample.c\54</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>48</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -241,7 +225,7 @@
           <Expression>\\sample\sample.c\48</Expression>
         </Bp>
         <Bp>
-          <Number>6</Number>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>47</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -257,7 +241,7 @@
           <Expression>\\sample\sample.c\47</Expression>
         </Bp>
         <Bp>
-          <Number>7</Number>
+          <Number>6</Number>
           <Type>0</Type>
           <LineNumber>53</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -273,7 +257,7 @@
           <Expression>\\sample\sample.c\53</Expression>
         </Bp>
         <Bp>
-          <Number>8</Number>
+          <Number>7</Number>
           <Type>0</Type>
           <LineNumber>45</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -289,7 +273,7 @@
           <Expression>\\sample\sample.c\45</Expression>
         </Bp>
         <Bp>
-          <Number>9</Number>
+          <Number>8</Number>
           <Type>0</Type>
           <LineNumber>44</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -305,7 +289,7 @@
           <Expression>\\sample\sample.c\44</Expression>
         </Bp>
         <Bp>
-          <Number>10</Number>
+          <Number>9</Number>
           <Type>0</Type>
           <LineNumber>50</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -321,7 +305,7 @@
           <Expression>\\sample\sample.c\50</Expression>
         </Bp>
         <Bp>
-          <Number>11</Number>
+          <Number>10</Number>
           <Type>0</Type>
           <LineNumber>51</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -337,7 +321,7 @@
           <Expression>\\sample\sample.c\51</Expression>
         </Bp>
         <Bp>
-          <Number>12</Number>
+          <Number>11</Number>
           <Type>0</Type>
           <LineNumber>739</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -353,7 +337,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>13</Number>
+          <Number>12</Number>
           <Type>0</Type>
           <LineNumber>22</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -369,7 +353,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>14</Number>
+          <Number>13</Number>
           <Type>0</Type>
           <LineNumber>23</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -385,7 +369,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>15</Number>
+          <Number>14</Number>
           <Type>0</Type>
           <LineNumber>24</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -401,7 +385,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>16</Number>
+          <Number>15</Number>
           <Type>0</Type>
           <LineNumber>25</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -417,7 +401,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>17</Number>
+          <Number>16</Number>
           <Type>0</Type>
           <LineNumber>26</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -433,7 +417,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>18</Number>
+          <Number>17</Number>
           <Type>0</Type>
           <LineNumber>27</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -449,7 +433,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>19</Number>
+          <Number>18</Number>
           <Type>0</Type>
           <LineNumber>28</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -465,7 +449,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>20</Number>
+          <Number>19</Number>
           <Type>0</Type>
           <LineNumber>29</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -481,7 +465,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>21</Number>
+          <Number>20</Number>
           <Type>0</Type>
           <LineNumber>37</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -497,7 +481,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>22</Number>
+          <Number>21</Number>
           <Type>0</Type>
           <LineNumber>46</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -513,7 +497,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>23</Number>
+          <Number>22</Number>
           <Type>0</Type>
           <LineNumber>52</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -529,7 +513,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>24</Number>
+          <Number>23</Number>
           <Type>0</Type>
           <LineNumber>55</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -545,7 +529,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>25</Number>
+          <Number>24</Number>
           <Type>0</Type>
           <LineNumber>58</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -557,6 +541,38 @@
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
           <Filename>.\sample.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>25</Number>
+          <Type>0</Type>
+          <LineNumber>767</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\GLCD\GLCD.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>26</Number>
+          <Type>0</Type>
+          <LineNumber>181</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\timer\IRQ_timer.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -867,7 +883,7 @@
 
   <Group>
     <GroupName>timer</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1063,7 +1079,7 @@
 
   <Group>
     <GroupName>GLCD</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1195,7 +1211,7 @@
 
   <Group>
     <GroupName>TouchPanel</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

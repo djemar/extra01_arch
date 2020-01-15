@@ -55,8 +55,8 @@
 #define Cyan           	0x7FFF
 #define Yellow         	0xFFE0
 
-#define CogwheelColor		0x3CD6
-#define WrenchColor			0x1987
+#define DarkGray		0x3CD6
+#define Orange			0xF483
 #define BackgroundColor	0xF79E
 
 /******************************************************************************
@@ -80,13 +80,16 @@ void LCD_Clear(uint16_t Color);
 uint16_t LCD_GetPoint(uint16_t Xpos,uint16_t Ypos);
 void LCD_SetPoint(uint16_t Xpos,uint16_t Ypos,uint16_t point);
 void LCD_DrawLine( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1 , uint16_t color );
+void LCD_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t base, uint16_t height, uint16_t color);
 void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, uint16_t bkColor );
 void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor);
 
 void LCD_HomeScreen(void);
+void LCD_MaintenanceIcon(uint8_t, uint8_t);
+
+/* Maintenance Mode functions */
 void LCD_MaintenanceMode(void);
-void LCD_MaintenanceModeSelectNote(int note);
-void LCD_MaintenanceIcon(void);
+void LCD_SelectNote(int note);
 
 #endif 
 

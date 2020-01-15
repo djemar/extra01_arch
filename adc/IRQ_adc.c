@@ -67,12 +67,16 @@ void ADC_IRQHandler(void) {
 			sprintf(note1_GUI_tmp, " %d Hz - %c ", freq_hz, note);
 			note1_tmp = freq;
 			GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, Blue2, White);
-			GUI_Text(32, 278, (uint8_t *) " save ", White, Green); /* save enabled */
+			/* enable save button */
+			LCD_DrawRectangle(0,272,MAX_X/2,48, Green); 
+			GUI_Text(44, 288, (uint8_t *) "SAVE", White, Green);
 		} else if(note2_tmp != freq && selected_note == NOTE_2) {
 			sprintf(note2_GUI_tmp, " %d Hz - %c ", freq_hz, note);
 			note2_tmp = freq;
 			GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, Blue2, White);	
-			GUI_Text(32, 278, (uint8_t *) " save ", White, Green); /* save enabled */
+			/* save enabled */
+			LCD_DrawRectangle(0,272,MAX_X/2,48, Green); 
+			GUI_Text(44, 288, (uint8_t *) "SAVE", White, Green);
 		}
 	}
 }
