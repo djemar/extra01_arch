@@ -790,7 +790,7 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
   ChangeX=1;
   do{
     if(ChangeX) {
-      LCD_DrawLine(x0-x,y0-y,x0-x,y0+y,White);
+      LCD_DrawLine(x0-x,y0-y,x0-x,y0+y,color);
       LCD_DrawLine(x0+x,y0-y,x0+x,y0+y,color);
     } // if
     ChangeX=(old_err=err)<=x;
@@ -811,15 +811,15 @@ void LCD_MaintenanceMode() {
 	LCD_Clear(Teal);
 	GUI_Text(4, 26, (uint8_t *) "******** Maintenance ********", FluorescentOrange, Teal);
 	
-	GUI_Text(116, 68, (uint8_t *) " NOTE 1 ", White, Teal);
-	GUI_Text(77, 110, (uint8_t *) note1_GUI, White, Teal);
+	GUI_Text(88, 68, (uint8_t *) " NOTE 1 ", White, Teal);
+	GUI_Text(72, 110, (uint8_t *) note1_GUI, White, Teal);
 
-	LCD_DrawLine(76, 151, 164, 151, Peach);
-	LCD_DrawLine(76, 152, 164, 152, Peach);
-	LCD_DrawLine(76, 153, 164, 153, Peach);
+	LCD_DrawLine(76, 159, 164, 159, Peach);
+	LCD_DrawLine(76, 160, 164, 160, Peach);
+	LCD_DrawLine(76, 161, 164, 161, Peach);
 
-	GUI_Text(116, 194, (uint8_t *) " NOTE 2 ", White, Teal);
-	GUI_Text(77, 236, (uint8_t *) note2_GUI, White, Teal);
+	GUI_Text(88, 194, (uint8_t *) " NOTE 2 ", White, Teal);
+	GUI_Text(72, 236, (uint8_t *) note2_GUI, White, Teal);
 	
 	GUI_Text(32, 278, (uint8_t *) " SAVE ", Black, Grey);
 	GUI_Text(160, 278, (uint8_t *) " QUIT ", White, RedBrown);
@@ -830,15 +830,15 @@ void LCD_MaintenanceMode() {
 void LCD_MaintenanceModeSelectNote(int note) {
 	selected_note = note;
 	if(selected_note == NOTE_1) {
-		GUI_Text(116, 68, (uint8_t *) " NOTE 1 ", Teal, White);
-		GUI_Text(77, 110, (uint8_t *) note_GUI, Teal, White);
-		GUI_Text(116, 194, (uint8_t *) " NOTE 2 ", White, Teal);
-		GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, White, Teal);
+		GUI_Text(88, 68, (uint8_t *) " NOTE 1 ", Teal, White);
+		GUI_Text(72, 110, (uint8_t *) note_GUI, Teal, White);
+		GUI_Text(88, 194, (uint8_t *) " NOTE 2 ", White, Teal);
+		GUI_Text(72, 236, (uint8_t *) note2_GUI_tmp, White, Teal);
 	} else if(selected_note == NOTE_2) {
-		GUI_Text(116, 194, (uint8_t *) " NOTE 2 ", Teal, White);
-		GUI_Text(77, 236, (uint8_t *) note_GUI, Teal, White);
-		GUI_Text(116, 68, (uint8_t *) " NOTE 1 ", White, Teal);
-		GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, White, Teal);
+		GUI_Text(88, 194, (uint8_t *) " NOTE 2 ", Teal, White);
+		GUI_Text(72, 236, (uint8_t *) note_GUI, Teal, White);
+		GUI_Text(88, 68, (uint8_t *) " NOTE 1 ", White, Teal);
+		GUI_Text(72, 110, (uint8_t *) note1_GUI_tmp, White, Teal);
 	}
 }
 
