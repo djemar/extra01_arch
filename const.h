@@ -4,9 +4,12 @@
 #define FREE 0
 #define READY 1
 #define MOVING 2
-#define STOPPED 3
-#define ARRIVED 4
-#define USER_REACHED 5
+#define REACHING_USER 3
+#define STOPPED 4
+#define ARRIVED 5
+#define USER_REACHED 6
+#define MAINTENANCE 7
+#define EMERGENCY 8
 
 /*
 * 	JOYSTICK STATUS
@@ -45,9 +48,12 @@
 *   BLINKING CONSTS
 *   - 2 Hz = 0.5s => 500ms
 *   - 5 Hz = 0.2s => 200ms
+*   - 4 Hz : 0x005F5E10
+
 */
 #define HZ_2 0x00BEBC20
 #define HZ_5 0x004C4B40
+#define HZ_4 0x005F5E10
 
 /* 	
 *		TIME CONSTS
@@ -56,3 +62,32 @@
 #define SEC_3 0x047868C0 // 3 * 25 * 10^6
 #define MIN_1 0x59682F00 // 1 minute alarm = 25Mhz * 60s * 10^6‬ =0x59682F00
 //#define MS_7200 0x0ABA9500
+
+/* 	
+*		NOTE
+*/
+#define NONE 0
+#define NOTE_1 1
+#define NOTE_2 2
+
+/*
+*	BUTTONS
+*/
+#define KEY_1 0
+#define KEY_2 1
+#define INT_0 2
+
+/*
+* JOYSTICKS
+*/
+#define JOYSTICK_SELECT 0
+#define JOYSTICK_MOVE 1
+
+/*
+* EMERGENCY MODE
+*/
+#define USER_DISABLE 1
+#define RESCUE_DISABLE 2
+#define ENABLE 3
+
+/************************EOF*****************************/
