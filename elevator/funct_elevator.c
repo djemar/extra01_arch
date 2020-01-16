@@ -113,7 +113,6 @@ void elevator_emergency_mode(int status) {
 		LED_Off(ALARM_LED_0);
 		LED_Off(ALARM_LED_1);
 		clear_timer(0);
-		timer_alarm = DISABLED;
 		clear_timer(2);
 		if(status == USER_DISABLE) {
 			elevator_status = STOPPED;

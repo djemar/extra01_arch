@@ -61,18 +61,18 @@ void ADC_IRQHandler(void) {
 		if(note1_index_tmp != note_index && selected_note == NOTE_1) {
 			note1_index_tmp = note_index;
 			sprintf(GUI_note, "%d Hz - %c", freq_hz, note);
-			GUI_Text(128, 206, (uint8_t *) GUI_note, Black, BackgroundColor);
+			GUI_Text(128, 206, (uint8_t *) GUI_note, Black, White);
 		} else if(note2_index_tmp != note_index && selected_note == NOTE_2) {
 			note2_index_tmp = note_index;
 			sprintf(GUI_note, "%d Hz - %c", freq_hz, note);
-			GUI_Text(128, 206, (uint8_t *) GUI_note, Black, BackgroundColor);
+			GUI_Text(128, 206, (uint8_t *) GUI_note, Black, White);
 		}
 		
 		if(save_enabled == TRUE && note1_index == note1_index_tmp && note2_index == note2_index_tmp) {
 			/* disable save button */
 			save_enabled = FALSE;
-			LCD_DrawRectangle(0,272,MAX_X/2,48, DarkGray);
-			GUI_Text(44, 288, (uint8_t *) "SAVE", White, DarkGray);
+			LCD_DrawRectangle(0,272,MAX_X/2,48, Grey);
+			GUI_Text(44, 288, (uint8_t *) "SAVE", Black, Grey);
 		} else if(save_enabled == FALSE && (note1_index != note1_index_tmp || note2_index != note2_index_tmp)) {
 			/* enable save button */
 			save_enabled = TRUE;

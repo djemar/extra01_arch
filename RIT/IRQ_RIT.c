@@ -37,7 +37,6 @@ void RIT_IRQHandler (void)
 		
 		case READY:	
 			enable_reservation_timer();
-			check_button(INT_0);
 			break;
 		
 		case MOVING:

@@ -749,7 +749,7 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 }
 
 void LCD_HomeScreen(void) {
-	LCD_Clear(BackgroundColor);
+	LCD_Clear(White);
 	LCD_MaintenanceIcon(95, 134);
 }
 
@@ -758,7 +758,7 @@ void LCD_MaintenanceIcon(uint8_t x0, uint8_t y0) {
 	for(i = 0; i < ICON_SIZE; i++) { 
 		for(j = 0; j < ICON_SIZE; j++) { 
 			if(icon[j][i] == 1)
-				LCD_SetPoint(x0+i, y0+j, DarkGray);
+				LCD_SetPoint(x0+i, y0+j, Black);
 			else if(icon[j][i] == 2)
 				LCD_SetPoint(x0+i, y0+j, Orange);
 		} 
@@ -766,12 +766,14 @@ void LCD_MaintenanceIcon(uint8_t x0, uint8_t y0) {
 } 
 
 void LCD_MaintenanceMode() {
-	LCD_Clear(BackgroundColor);
-	LCD_DrawRectangle(0,0,MAX_X, 120, DarkGray);
-	GUI_Text(76, 28, (uint8_t *) "MAINTENANCE", Orange, DarkGray);
+	note1_index_tmp = note_index;
+	note2_index_tmp = note2_index;
+	LCD_Clear(White);
+	LCD_DrawRectangle(0,0,MAX_X, 120, Black);
+	GUI_Text(76, 28, (uint8_t *) "MAINTENANCE", Red, Black);
 	
-	GUI_Text(32, 174, (uint8_t *) "saved note: ", Black, BackgroundColor);
-	GUI_Text(40, 206, (uint8_t *) "new note: ", Black, BackgroundColor);
+	GUI_Text(32, 174, (uint8_t *) "saved note: ", Black, White);
+	GUI_Text(40, 206, (uint8_t *) "new note: ", Black, White);
 	
 	LCD_SelectNote(NOTE_1);
 	
@@ -779,8 +781,8 @@ void LCD_MaintenanceMode() {
 	if(note1_index == note_index && note2_index == note_index) {
 		/* save disable */
 		save_enabled = FALSE;
-		LCD_DrawRectangle(0,272,MAX_X/2,48, DarkGray);
-		GUI_Text(44, 288, (uint8_t *) "SAVE", White, DarkGray);
+		LCD_DrawRectangle(0,272,MAX_X/2,48, Grey);
+		GUI_Text(44, 288, (uint8_t *) "SAVE", Black, Grey);
 	} else {
 		/* save enable */
 		save_enabled = TRUE;
@@ -798,34 +800,34 @@ void LCD_SelectNote(int note) {
 	selected_note = note;
 	if(selected_note == NOTE_1) {
 		note1_index_tmp = note_index;
-		GUI_Text(36, 88, (uint8_t *) "NOTE 1", Orange, DarkGray);
-		GUI_Text(156, 88, (uint8_t *) "NOTE 2", White, DarkGray);
+		GUI_Text(36, 88, (uint8_t *) "NOTE 1", Red, Black);
+		GUI_Text(156, 88, (uint8_t *) "NOTE 2", White, Black);
 		
-		LCD_DrawRectangle(0,121,120,4,Orange);
-		LCD_DrawRectangle(120,121,240,4,BackgroundColor);
+		LCD_DrawRectangle(0,120,120,4,Red);
+		LCD_DrawRectangle(120,120,240,4,White);
 
 		sprintf(GUI_saved_note, "%d Hz - %c", freqs_hz[note1_index], notes[note1_index]);
-		GUI_Text(128, 174, (uint8_t *) GUI_saved_note, Black, BackgroundColor);
+		GUI_Text(128, 174, (uint8_t *) GUI_saved_note, Black, White);
 	} else if(selected_note == NOTE_2) {
 		note2_index_tmp = note_index;
-		GUI_Text(36, 88, (uint8_t *) "NOTE 1", White, DarkGray);
-		GUI_Text(156, 88, (uint8_t *) "NOTE 2", Orange, DarkGray);
+		GUI_Text(36, 88, (uint8_t *) "NOTE 1", White, Black);
+		GUI_Text(156, 88, (uint8_t *) "NOTE 2", Red, Black);
 		
-		LCD_DrawRectangle(0,121,120,4,BackgroundColor);
-		LCD_DrawRectangle(120,121,240,4,Orange);
+		LCD_DrawRectangle(0,120,120,4,White);
+		LCD_DrawRectangle(120,120,240,4,Red);
 
 		sprintf(GUI_saved_note, "%d Hz - %c", freqs_hz[note2_index], notes[note2_index]);
-		GUI_Text(128, 174, (uint8_t *) GUI_saved_note, Black, BackgroundColor);	
+		GUI_Text(128, 174, (uint8_t *) GUI_saved_note, Black, White);	
 	}
 	
 	sprintf(GUI_note, "%d Hz - %c", freqs_hz[note_index], notes[note_index]); 
-	GUI_Text(128, 206, (uint8_t *) GUI_note, Black, BackgroundColor);
+	GUI_Text(128, 206, (uint8_t *) GUI_note, Black, White);
 	
 	if(save_enabled == TRUE && note1_index == note1_index_tmp && note2_index == note2_index_tmp) {
 		/* disable save button */
 		save_enabled = FALSE;
-		LCD_DrawRectangle(0,272,MAX_X/2,48, DarkGray);
-		GUI_Text(44, 288, (uint8_t *) "SAVE", White, DarkGray);
+		LCD_DrawRectangle(0,272,MAX_X/2,48, Black);
+		GUI_Text(44, 288, (uint8_t *) "SAVE", White, Black);
 	} else if(save_enabled == FALSE && (note1_index != note1_index_tmp || note2_index != note2_index_tmp)) {
 		/* enable save button */
 		save_enabled = TRUE;

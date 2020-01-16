@@ -54,10 +54,7 @@
 #define Green          	0x07E0
 #define Cyan           	0x7FFF
 #define Yellow         	0xFFE0
-
-#define DarkGray		0x3CD6
-#define Orange			0xF483
-#define BackgroundColor	0xF79E
+#define Orange					0xF483
 
 /******************************************************************************
 * Function Name  : RGB565CONVERT
