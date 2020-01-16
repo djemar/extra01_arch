@@ -90,4 +90,9 @@
 #define RESCUE_DISABLE 2
 #define ENABLE 3
 
+#define TRUE 1
+#define FALSE 0
+
+#define MAX_NOTE_LENGTH 10
+
 /************************EOF*****************************/

@@ -20,10 +20,12 @@ unsigned short AD_current;
 unsigned short AD_last = 0xFF;     /* Last converted value               */
 
 /* k=1/f'*f/n  k=f/(f'*n) k=25MHz/(f'*45) */
-
-const int freqs[8]={1062,1125,1263,1417,1592,1684,1890,2120};
-const int freqs_hz[8]={523,494,440,392,349,330,294,262};
-const char notes[8]={'C', 'B', 'A', 'G', 'F', 'E', 'D', 'C'};
+/* 
+* NOTES
+*/
+volatile const int freqs[8]={1062,1125,1263,1417,1592,1684,1890,2120};
+volatile const int freqs_hz[8]={523,494,440,392,349,330,294,262};
+volatile const char notes[8]={'C', 'B', 'A', 'G', 'F', 'E', 'D', 'C'};
 /*
 262Hz	k=2120		c4
 294Hz	k=1890		
@@ -35,47 +37,46 @@ const char notes[8]={'C', 'B', 'A', 'G', 'F', 'E', 'D', 'C'};
 523Hz	k=1062		c5
 */
 
-int note;
-int note1 = 1263;
-int note2 = 1263;
-int note1_tmp;
-int note2_tmp;
-
-char note_GUI[] = " 440 Hz - A ";
-char note1_GUI[] = " 440 Hz - A ";
-char note2_GUI[] = " 440 Hz - A ";
-char note1_GUI_tmp[] = " 440 Hz - A ";
-char note2_GUI_tmp[] = " 440 Hz - A ";
+volatile int note_index;
+volatile int note1_index_tmp = 2;
+volatile int note1_index = 2; /* saved value: default 1263 */
+volatile int note2_index_tmp = 2;
+volatile int note2_index = 2; /* saved value: default 1263 */
 
 extern uint8_t selected_note;
+extern int save_enabled;
 
 void ADC_IRQHandler(void) {
-  int freq;
+	char GUI_note[MAX_NOTE_LENGTH];
 	int freq_hz;
   char note;
 	
 	AD_current = ((LPC_ADC->ADGDR>>4) & 0xFFF);/* Read Conversion Result             */
+	note_index = AD_current*7/0xFFF;
   if(AD_current != AD_last){
-		AD_last = AD_current;
-		freq = freqs[AD_current*7/0xFFF];	
-		freq_hz = freqs_hz[AD_current*7/0xFFF];	
-		note = notes[AD_current*7/0xFFF];
+		AD_last = AD_current;	
+		freq_hz = freqs_hz[note_index];	
+		note = notes[note_index];
 		
-		sprintf(note_GUI, " %d Hz - %c ", freq_hz, note);
-
-		if(note1_tmp != freq && selected_note == NOTE_1) {
-			sprintf(note1_GUI_tmp, " %d Hz - %c ", freq_hz, note);
-			note1_tmp = freq;
-			GUI_Text(77, 110, (uint8_t *) note1_GUI_tmp, Blue2, White);
+		if(note1_index_tmp != note_index && selected_note == NOTE_1) {
+			note1_index_tmp = note_index;
+			sprintf(GUI_note, "%d Hz - %c", freq_hz, note);
+			GUI_Text(128, 206, (uint8_t *) GUI_note, Black, BackgroundColor);
+		} else if(note2_index_tmp != note_index && selected_note == NOTE_2) {
+			note2_index_tmp = note_index;
+			sprintf(GUI_note, "%d Hz - %c", freq_hz, note);
+			GUI_Text(128, 206, (uint8_t *) GUI_note, Black, BackgroundColor);
+		}
+		
+		if(save_enabled == TRUE && note1_index == note1_index_tmp && note2_index == note2_index_tmp) {
+			/* disable save button */
+			save_enabled = FALSE;
+			LCD_DrawRectangle(0,272,MAX_X/2,48, DarkGray);
+			GUI_Text(44, 288, (uint8_t *) "SAVE", White, DarkGray);
+		} else if(save_enabled == FALSE && (note1_index != note1_index_tmp || note2_index != note2_index_tmp)) {
 			/* enable save button */
-			LCD_DrawRectangle(0,272,MAX_X/2,48, Green); 
-			GUI_Text(44, 288, (uint8_t *) "SAVE", White, Green);
-		} else if(note2_tmp != freq && selected_note == NOTE_2) {
-			sprintf(note2_GUI_tmp, " %d Hz - %c ", freq_hz, note);
-			note2_tmp = freq;
-			GUI_Text(77, 236, (uint8_t *) note2_GUI_tmp, Blue2, White);	
-			/* save enabled */
-			LCD_DrawRectangle(0,272,MAX_X/2,48, Green); 
+			save_enabled = TRUE;
+			LCD_DrawRectangle(0,272,MAX_X/2,48, Green);
 			GUI_Text(44, 288, (uint8_t *) "SAVE", White, Green);
 		}
 	}

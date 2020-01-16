@@ -6,6 +6,7 @@
 .\glcd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmInstr.h
 .\glcd.o: C:\Keil_v5\ARM\CMSIS\Include\core_cmFunc.h
 .\glcd.o: C:\Keil_v5\ARM\INC\NXP\LPC17xx\system_LPC17xx.h
+.\glcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\glcd.o: GLCD\AsciiLib.h
 .\glcd.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\glcd.o: GLCD\../const.h

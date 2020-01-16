@@ -21,14 +21,14 @@ extern uint8_t elevator_status;
 extern uint8_t joystick_status;
 extern uint8_t timer_blinking;
 
-extern unsigned int note1;
-extern unsigned int note1_tmp;
-extern unsigned int note2;
-extern unsigned int note2_tmp;
-extern char note1_GUI[];
-extern char note2_GUI[];
-extern char note1_GUI_tmp[];
-extern char note2_GUI_tmp[];
+extern const int freqs[8];
+extern int note_index;
+extern int note1_index_tmp;
+extern int note1_index; /* saved value */
+extern int note2_index_tmp;
+extern int note2_index; /* saved value */
+extern uint8_t selected_note;
+extern int save_enabled;
 
 volatile uint16_t SinTable[45] =
 {
@@ -80,9 +80,9 @@ void TIMER0_IRQHandler (void)
 		case EMERGENCY:
 			clear_timer(2);
 			if(i%2==0)
-				init_timer(2, note1);
+				init_timer(2, freqs[note1_index]);
 			else
-				init_timer(2, note2);
+				init_timer(2, freqs[note2_index]);
 			i++;
 			enable_timer(2);
 			LED_blink(STATUS_LED);
@@ -140,36 +140,32 @@ void TIMER2_IRQHandler (void)
 			break;
 		case MAINTENANCE:
 			
-			if(display.x > 32 && display.x < 208 &&
-					display.y > 58 && display.y < 136) {
+			if(display.x > 0 && display.x < 120 &&
+					display.y > 72 && display.y < 120) {
 				/* NOTE_1 */
 				LCD_SelectNote(NOTE_1);
 			} 
 			
-			if(display.x > 32 && display.x < 208 &&
-					display.y > 184 && display.y < 262) {
+			if(display.x > 120 && display.x < 240 &&
+					display.y > 72 && display.y < 120) {
 				/* NOTE_2 */
 				LCD_SelectNote(NOTE_2);
 			} 			
 			
-			if(display.x > 32 && display.x < 80 &&
-					display.y > 273 && display.y < 299) {
+			if(save_enabled &&
+					display.x > 0 && display.x < 120 &&
+					display.y > 272 && display.y < 320) {
 				/* save */
-				strcpy(note1_GUI, note1_GUI_tmp);
-				strcpy(note2_GUI, note2_GUI_tmp);
-				note1 = note1_tmp;
-				note2 = note2_tmp;
-				GUI_Text(32, 278, (uint8_t *) " save ", Green, White);
-				LCD_MaintenanceMode();
+				note1_index = note1_index_tmp;
+				note2_index = note2_index_tmp;
+				LCD_SelectNote(selected_note);
 			} 
 	
-			if(display.x > 160 && display.x < 208 &&
-					display.y > 273 && display.y < 299) {
+			if(display.x > 120 && display.x < 240 &&
+					display.y > 272 && display.y < 320) {
 				/* quit */
 				LCD_HomeScreen();
 				elevator_status = FREE;
-				strcpy(note1_GUI_tmp, note1_GUI);
-				strcpy(note2_GUI_tmp, note2_GUI);
 			}	
 			break;
 			
