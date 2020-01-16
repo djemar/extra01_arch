@@ -750,17 +750,17 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
 
 void LCD_HomeScreen(void) {
 	LCD_Clear(BackgroundColor);
-	LCD_MaintenanceIcon(91, 131);
+	LCD_MaintenanceIcon(95, 134);
 }
 
 void LCD_MaintenanceIcon(uint8_t x0, uint8_t y0) { 
-	int x, y; 
-	for(x = 0; x < ICON_SIZE; x++) { 
-		for(y = 0; y < ICON_SIZE; y++) { 
-			if(icon[x][y] == 1)
-				LCD_SetPoint(y0+y, x0+x, DarkGray);
-			else if(icon[x][y] == 2)
-				LCD_SetPoint(y0+y, x0+x, Orange);
+	int i, j; 
+	for(i = 0; i < ICON_SIZE; i++) { 
+		for(j = 0; j < ICON_SIZE; j++) { 
+			if(icon[j][i] == 1)
+				LCD_SetPoint(x0+i, y0+j, DarkGray);
+			else if(icon[j][i] == 2)
+				LCD_SetPoint(x0+i, y0+j, Orange);
 		} 
 	} 
 } 
