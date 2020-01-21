@@ -115,6 +115,9 @@ void elevator_emergency_mode(int status) {
 		clear_timer(0);
 		timer_alarm = DISABLED;
 		clear_timer(2);
+		init_timer(2, 0x4E2); 						    /* 500us * 25MHz = 1.25*10^3 = 0x4E2 */
+		enable_timer(2);
+	
 		if(status == USER_DISABLE) {
 			elevator_status = STOPPED;
 			joystick_status = MOVE_ENABLED;
